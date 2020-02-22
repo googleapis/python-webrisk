@@ -1344,8 +1344,7 @@ SearchHashesRequest = _reflection.GeneratedProtocolMessageType(
     dict(
         DESCRIPTOR=_SEARCHHASHESREQUEST,
         __module__="google.cloud.webrisk_v1beta1.proto.webrisk_pb2",
-        __doc__="""Request to return full hashes matched by the provided hash
-  prefixes.
+        __doc__="""Request to return full hashes matched by the provided hash prefixes.
   
   
   Attributes:
