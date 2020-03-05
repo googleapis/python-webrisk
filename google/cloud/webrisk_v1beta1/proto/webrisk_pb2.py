@@ -1412,9 +1412,8 @@ ThreatEntryAdditions = _reflection.GeneratedProtocolMessageType(
     dict(
         DESCRIPTOR=_THREATENTRYADDITIONS,
         __module__="google.cloud.webrisk_v1beta1.proto.webrisk_pb2",
-        __doc__="""Contains the set of entries to add to a local database.
-  May contain a combination of compressed and raw data in a single
-  response.
+        __doc__="""Contains the set of entries to add to a local database. May contain a
+  combination of compressed and raw data in a single response.
   
   
   Attributes:
@@ -1438,7 +1437,8 @@ ThreatEntryRemovals = _reflection.GeneratedProtocolMessageType(
     dict(
         DESCRIPTOR=_THREATENTRYREMOVALS,
         __module__="google.cloud.webrisk_v1beta1.proto.webrisk_pb2",
-        __doc__="""Contains the set of entries to remove from a local database.
+        __doc__="""Contains the set of entries to remove from a local
+  database.
   
   
   Attributes:
