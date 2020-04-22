@@ -1616,8 +1616,8 @@ RiceDeltaEncoding = _reflection.GeneratedProtocolMessageType(
     {
         "DESCRIPTOR": _RICEDELTAENCODING,
         "__module__": "google.cloud.webrisk_v1.proto.webrisk_pb2",
-        "__doc__": """The Rice-Golomb encoded data. Used for sending compressed
-  4-byte hashes or compressed removal indices.
+        "__doc__": """The Rice-Golomb encoded data. Used for sending compressed 4-byte hashes
+  or compressed removal indices.
   
   
   Attributes:
