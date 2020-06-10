@@ -17,7 +17,7 @@
 import synthtool as s
 from synthtool import gcp
 
-gapic = gcp.GAPICBazel()
+gapic = gcp.GAPICMicrogenerator()
 common = gcp.CommonTemplates()
 versions = ["v1beta1", "v1"]
 
