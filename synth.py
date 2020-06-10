@@ -25,14 +25,8 @@ versions = ["v1beta1", "v1"]
 # Generate webrisk GAPIC layer
 # ----------------------------------------------------------------------------
 for version in versions:
-    library = gapic.py_library(
-        service="webrisk",
-        version=version,
-        bazel_target=f"//google/cloud/webrisk/{version}:webrisk-{version}-py",
-        include_protos=True,
-    )
-    s.copy(library, excludes=["docs/index.rst", "nox.py", "README.rst", "setup.py"])
-
+    library = gapic.py_library(service="webrisk", version=version,)
+    s.move(library, excludes=["setup.py", "docs/index.rst"])
 
 # Fix docstring issue for classes with no summary line
 s.replace(
@@ -46,7 +40,12 @@ s.replace(
 # ----------------------------------------------------------------------------
 # Add templated files
 # ----------------------------------------------------------------------------
-templated_files = common.py_library(cov_level=75)
-s.move(templated_files)
+templated_files = common.py_library(
+    cov_level=100,
+    samples=False,
+    unit_test_python_versions=["3.6", "3.7", "3.8"],
+    system_test_python_versions=["3.7"],
+)
+s.move(templated_files, excludes=[".coveragerc"])  # microgenerator has a good .coveragerc file
 
 s.shell.run(["nox", "-s", "blacken"], hide_output=False)
