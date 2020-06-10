@@ -27,15 +27,14 @@ from google.cloud.webrisk_v1.types import webrisk
 class WebRiskServiceTransport(metaclass=abc.ABCMeta):
     """Abstract transport class for WebRiskService."""
 
-    AUTH_SCOPES = (
-        'https://www.googleapis.com/auth/cloud-platform',
-    )
+    AUTH_SCOPES = ("https://www.googleapis.com/auth/cloud-platform",)
 
     def __init__(
-            self, *,
-            host: str = 'webrisk.googleapis.com',
-            credentials: credentials.Credentials = None,
-            ) -> None:
+        self,
+        *,
+        host: str = "webrisk.googleapis.com",
+        credentials: credentials.Credentials = None,
+    ) -> None:
         """Instantiate the transport.
 
         Args:
@@ -47,8 +46,8 @@ class WebRiskServiceTransport(metaclass=abc.ABCMeta):
                 credentials from the environment.
         """
         # Save the hostname. Default to port 443 (HTTPS) if none is specified.
-        if ':' not in host:
-            host += ':443'
+        if ":" not in host:
+            host += ":443"
         self._host = host
 
         # If no credentials are provided, then determine the appropriate
@@ -60,30 +59,30 @@ class WebRiskServiceTransport(metaclass=abc.ABCMeta):
         self._credentials = credentials
 
     @property
-    def compute_threat_list_diff(self) -> typing.Callable[
-            [webrisk.ComputeThreatListDiffRequest],
-            webrisk.ComputeThreatListDiffResponse]:
+    def compute_threat_list_diff(
+        self
+    ) -> typing.Callable[
+        [webrisk.ComputeThreatListDiffRequest], webrisk.ComputeThreatListDiffResponse
+    ]:
         raise NotImplementedError
 
     @property
-    def search_uris(self) -> typing.Callable[
-            [webrisk.SearchUrisRequest],
-            webrisk.SearchUrisResponse]:
+    def search_uris(
+        self
+    ) -> typing.Callable[[webrisk.SearchUrisRequest], webrisk.SearchUrisResponse]:
         raise NotImplementedError
 
     @property
-    def search_hashes(self) -> typing.Callable[
-            [webrisk.SearchHashesRequest],
-            webrisk.SearchHashesResponse]:
+    def search_hashes(
+        self
+    ) -> typing.Callable[[webrisk.SearchHashesRequest], webrisk.SearchHashesResponse]:
         raise NotImplementedError
 
     @property
-    def create_submission(self) -> typing.Callable[
-            [webrisk.CreateSubmissionRequest],
-            webrisk.Submission]:
+    def create_submission(
+        self
+    ) -> typing.Callable[[webrisk.CreateSubmissionRequest], webrisk.Submission]:
         raise NotImplementedError
 
 
-__all__ = (
-    'WebRiskServiceTransport',
-)
+__all__ = ("WebRiskServiceTransport",)

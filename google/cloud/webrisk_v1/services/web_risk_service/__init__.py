@@ -17,6 +17,4 @@
 
 from .client import WebRiskServiceClient
 
-__all__ = (
-    'WebRiskServiceClient',
-)
+__all__ = ("WebRiskServiceClient",)

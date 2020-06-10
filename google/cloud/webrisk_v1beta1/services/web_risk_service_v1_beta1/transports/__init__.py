@@ -23,11 +23,10 @@ from .grpc import WebRiskServiceV1Beta1GrpcTransport
 
 
 # Compile a registry of transports.
-_transport_registry = OrderedDict()  # type: Dict[str, Type[WebRiskServiceV1Beta1Transport]]
-_transport_registry['grpc'] = WebRiskServiceV1Beta1GrpcTransport
+_transport_registry = (
+    OrderedDict()
+)  # type: Dict[str, Type[WebRiskServiceV1Beta1Transport]]
+_transport_registry["grpc"] = WebRiskServiceV1Beta1GrpcTransport
 
 
-__all__ = (
-    'WebRiskServiceV1Beta1Transport',
-    'WebRiskServiceV1Beta1GrpcTransport',
-)
+__all__ = ("WebRiskServiceV1Beta1Transport", "WebRiskServiceV1Beta1GrpcTransport")

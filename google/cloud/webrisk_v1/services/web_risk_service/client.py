@@ -21,14 +21,14 @@ import re
 from typing import Callable, Dict, Sequence, Tuple, Type, Union
 import pkg_resources
 
-import google.api_core.client_options as ClientOptions # type: ignore
-from google.api_core import exceptions                 # type: ignore
-from google.api_core import gapic_v1                   # type: ignore
-from google.api_core import retry as retries           # type: ignore
-from google.auth import credentials                    # type: ignore
-from google.auth.transport import mtls                 # type: ignore
+import google.api_core.client_options as ClientOptions  # type: ignore
+from google.api_core import exceptions  # type: ignore
+from google.api_core import gapic_v1  # type: ignore
+from google.api_core import retry as retries  # type: ignore
+from google.auth import credentials  # type: ignore
+from google.auth.transport import mtls  # type: ignore
 from google.auth.exceptions import MutualTLSChannelError  # type: ignore
-from google.oauth2 import service_account              # type: ignore
+from google.oauth2 import service_account  # type: ignore
 
 from google.cloud.webrisk_v1.types import webrisk
 from google.protobuf import timestamp_pb2 as timestamp  # type: ignore
@@ -44,12 +44,13 @@ class WebRiskServiceClientMeta(type):
     support objects (e.g. transport) without polluting the client instance
     objects.
     """
-    _transport_registry = OrderedDict()  # type: Dict[str, Type[WebRiskServiceTransport]]
-    _transport_registry['grpc'] = WebRiskServiceGrpcTransport
 
-    def get_transport_class(cls,
-            label: str = None,
-            ) -> Type[WebRiskServiceTransport]:
+    _transport_registry = (
+        OrderedDict()
+    )  # type: Dict[str, Type[WebRiskServiceTransport]]
+    _transport_registry["grpc"] = WebRiskServiceGrpcTransport
+
+    def get_transport_class(cls, label: str = None) -> Type[WebRiskServiceTransport]:
         """Return an appropriate transport class.
 
         Args:
@@ -102,7 +103,7 @@ class WebRiskServiceClient(metaclass=WebRiskServiceClientMeta):
 
         return api_endpoint.replace(".googleapis.com", ".mtls.googleapis.com")
 
-    DEFAULT_ENDPOINT = 'webrisk.googleapis.com'
+    DEFAULT_ENDPOINT = "webrisk.googleapis.com"
     DEFAULT_MTLS_ENDPOINT = _get_default_mtls_endpoint.__func__(  # type: ignore
         DEFAULT_ENDPOINT
     )
@@ -121,18 +122,19 @@ class WebRiskServiceClient(metaclass=WebRiskServiceClientMeta):
         Returns:
             {@api.name}: The constructed client.
         """
-        credentials = service_account.Credentials.from_service_account_file(
-            filename)
-        kwargs['credentials'] = credentials
+        credentials = service_account.Credentials.from_service_account_file(filename)
+        kwargs["credentials"] = credentials
         return cls(*args, **kwargs)
 
     from_service_account_json = from_service_account_file
 
-    def __init__(self, *,
-            credentials: credentials.Credentials = None,
-            transport: Union[str, WebRiskServiceTransport] = None,
-            client_options: ClientOptions = None,
-            ) -> None:
+    def __init__(
+        self,
+        *,
+        credentials: credentials.Credentials = None,
+        transport: Union[str, WebRiskServiceTransport] = None,
+        client_options: ClientOptions = None,
+    ) -> None:
         """Instantiate the web risk service client.
 
         Args:
@@ -179,7 +181,9 @@ class WebRiskServiceClient(metaclass=WebRiskServiceClientMeta):
                     or mtls.has_default_client_cert_source()
                 )
                 client_options.api_endpoint = (
-                    self.DEFAULT_MTLS_ENDPOINT if has_client_cert_source else self.DEFAULT_ENDPOINT
+                    self.DEFAULT_MTLS_ENDPOINT
+                    if has_client_cert_source
+                    else self.DEFAULT_ENDPOINT
                 )
             else:
                 raise MutualTLSChannelError(
@@ -192,8 +196,10 @@ class WebRiskServiceClient(metaclass=WebRiskServiceClientMeta):
         if isinstance(transport, WebRiskServiceTransport):
             # transport is a WebRiskServiceTransport instance.
             if credentials:
-                raise ValueError('When providing a transport instance, '
-                                 'provide its credentials directly.')
+                raise ValueError(
+                    "When providing a transport instance, "
+                    "provide its credentials directly."
+                )
             self._transport = transport
         elif isinstance(transport, str):
             Transport = type(self).get_transport_class(transport)
@@ -208,16 +214,17 @@ class WebRiskServiceClient(metaclass=WebRiskServiceClientMeta):
                 client_cert_source=client_options.client_cert_source,
             )
 
-    def compute_threat_list_diff(self,
-            request: webrisk.ComputeThreatListDiffRequest = None,
-            *,
-            threat_type: webrisk.ThreatType = None,
-            version_token: bytes = None,
-            constraints: webrisk.ComputeThreatListDiffRequest.Constraints = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> webrisk.ComputeThreatListDiffResponse:
+    def compute_threat_list_diff(
+        self,
+        request: webrisk.ComputeThreatListDiffRequest = None,
+        *,
+        threat_type: webrisk.ThreatType = None,
+        version_token: bytes = None,
+        constraints: webrisk.ComputeThreatListDiffRequest.Constraints = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> webrisk.ComputeThreatListDiffResponse:
         r"""Gets the most recent threat list diffs. These diffs
         should be applied to a local database of hashes to keep
         it up-to-date. If the local database is empty or
@@ -271,8 +278,10 @@ class WebRiskServiceClient(metaclass=WebRiskServiceClientMeta):
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
         if request is not None and any([threat_type, version_token, constraints]):
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         request = webrisk.ComputeThreatListDiffRequest(request)
 
@@ -295,25 +304,21 @@ class WebRiskServiceClient(metaclass=WebRiskServiceClientMeta):
         )
 
         # Send the request.
-        response = rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata)
 
         # Done; return the response.
         return response
 
-    def search_uris(self,
-            request: webrisk.SearchUrisRequest = None,
-            *,
-            uri: str = None,
-            threat_types: Sequence[webrisk.ThreatType] = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> webrisk.SearchUrisResponse:
+    def search_uris(
+        self,
+        request: webrisk.SearchUrisRequest = None,
+        *,
+        uri: str = None,
+        threat_types: Sequence[webrisk.ThreatType] = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> webrisk.SearchUrisResponse:
         r"""This method is used to check whether a URI is on a
         given threatList. Multiple threatLists may be searched
         in a single query. The response will list all requested
@@ -353,8 +358,10 @@ class WebRiskServiceClient(metaclass=WebRiskServiceClientMeta):
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
         if request is not None and any([uri, threat_types]):
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         request = webrisk.SearchUrisRequest(request)
 
@@ -369,31 +376,25 @@ class WebRiskServiceClient(metaclass=WebRiskServiceClientMeta):
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
         rpc = gapic_v1.method.wrap_method(
-            self._transport.search_uris,
-            default_timeout=None,
-            client_info=_client_info,
+            self._transport.search_uris, default_timeout=None, client_info=_client_info
         )
 
         # Send the request.
-        response = rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata)
 
         # Done; return the response.
         return response
 
-    def search_hashes(self,
-            request: webrisk.SearchHashesRequest = None,
-            *,
-            hash_prefix: bytes = None,
-            threat_types: Sequence[webrisk.ThreatType] = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> webrisk.SearchHashesResponse:
+    def search_hashes(
+        self,
+        request: webrisk.SearchHashesRequest = None,
+        *,
+        hash_prefix: bytes = None,
+        threat_types: Sequence[webrisk.ThreatType] = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> webrisk.SearchHashesResponse:
         r"""Gets the full hashes that match the requested hash
         prefix. This is used after a hash prefix is looked up in
         a threatList and there is a match. The client side
@@ -435,8 +436,10 @@ class WebRiskServiceClient(metaclass=WebRiskServiceClientMeta):
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
         if request is not None and any([hash_prefix, threat_types]):
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         request = webrisk.SearchHashesRequest(request)
 
@@ -457,25 +460,21 @@ class WebRiskServiceClient(metaclass=WebRiskServiceClientMeta):
         )
 
         # Send the request.
-        response = rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata)
 
         # Done; return the response.
         return response
 
-    def create_submission(self,
-            request: webrisk.CreateSubmissionRequest = None,
-            *,
-            parent: str = None,
-            submission: webrisk.Submission = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> webrisk.Submission:
+    def create_submission(
+        self,
+        request: webrisk.CreateSubmissionRequest = None,
+        *,
+        parent: str = None,
+        submission: webrisk.Submission = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> webrisk.Submission:
         r"""Creates a Submission of a URI suspected of containing phishing
         content to be reviewed. If the result verifies the existence of
         malicious phishing content, the site will be added to the
@@ -520,8 +519,10 @@ class WebRiskServiceClient(metaclass=WebRiskServiceClientMeta):
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
         if request is not None and any([parent, submission]):
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         request = webrisk.CreateSubmissionRequest(request)
 
@@ -544,36 +545,22 @@ class WebRiskServiceClient(metaclass=WebRiskServiceClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('parent', request.parent),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
         )
 
         # Send the request.
-        response = rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata)
 
         # Done; return the response.
         return response
 
 
-
-
-
 try:
     _client_info = gapic_v1.client_info.ClientInfo(
-        gapic_version=pkg_resources.get_distribution(
-            'google-cloud-webrisk',
-        ).version,
+        gapic_version=pkg_resources.get_distribution("google-cloud-webrisk").version
     )
 except pkg_resources.DistributionNotFound:
     _client_info = gapic_v1.client_info.ClientInfo()
 
 
-__all__ = (
-    'WebRiskServiceClient',
-)
+__all__ = ("WebRiskServiceClient",)
