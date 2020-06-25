@@ -1264,6 +1264,7 @@ ComputeThreatListDiffRequest = _reflection.GeneratedProtocolMessageType(
                 "DESCRIPTOR": _COMPUTETHREATLISTDIFFREQUEST_CONSTRAINTS,
                 "__module__": "google.cloud.webrisk_v1beta1.proto.webrisk_pb2",
                 "__doc__": """The constraints for this diff.
+    
     Attributes:
         max_diff_entries:
             The maximum size in number of entries. The diff will not
@@ -1284,6 +1285,7 @@ ComputeThreatListDiffRequest = _reflection.GeneratedProtocolMessageType(
         "DESCRIPTOR": _COMPUTETHREATLISTDIFFREQUEST,
         "__module__": "google.cloud.webrisk_v1beta1.proto.webrisk_pb2",
         "__doc__": """Describes an API diff request.
+  
   Attributes:
       threat_type:
           The ThreatList to update.
@@ -1311,6 +1313,7 @@ ComputeThreatListDiffResponse = _reflection.GeneratedProtocolMessageType(
                 "DESCRIPTOR": _COMPUTETHREATLISTDIFFRESPONSE_CHECKSUM,
                 "__module__": "google.cloud.webrisk_v1beta1.proto.webrisk_pb2",
                 "__doc__": """The expected state of a client’s local database.
+    
     Attributes:
         sha256:
             The SHA256 hash of the client state; that is, of the sorted
@@ -1359,6 +1362,7 @@ SearchUrisRequest = _reflection.GeneratedProtocolMessageType(
         "DESCRIPTOR": _SEARCHURISREQUEST,
         "__module__": "google.cloud.webrisk_v1beta1.proto.webrisk_pb2",
         "__doc__": """Request to check URI entries against threatLists.
+  
   Attributes:
       uri:
           Required. The URI to be checked for matches.
@@ -1381,6 +1385,7 @@ SearchUrisResponse = _reflection.GeneratedProtocolMessageType(
                 "DESCRIPTOR": _SEARCHURISRESPONSE_THREATURI,
                 "__module__": "google.cloud.webrisk_v1beta1.proto.webrisk_pb2",
                 "__doc__": """Contains threat information on a matching uri.
+    
     Attributes:
         threat_types:
             The ThreatList this threat belongs to.
@@ -1413,6 +1418,7 @@ SearchHashesRequest = _reflection.GeneratedProtocolMessageType(
         "DESCRIPTOR": _SEARCHHASHESREQUEST,
         "__module__": "google.cloud.webrisk_v1beta1.proto.webrisk_pb2",
         "__doc__": """Request to return full hashes matched by the provided hash prefixes.
+  
   Attributes:
       hash_prefix:
           A hash prefix, consisting of the most significant 4-32 bytes
@@ -1437,6 +1443,7 @@ SearchHashesResponse = _reflection.GeneratedProtocolMessageType(
                 "DESCRIPTOR": _SEARCHHASHESRESPONSE_THREATHASH,
                 "__module__": "google.cloud.webrisk_v1beta1.proto.webrisk_pb2",
                 "__doc__": """Contains threat information on a matching hash.
+    
     Attributes:
         threat_types:
             The ThreatList this threat belongs to. This must contain at
@@ -1477,6 +1484,7 @@ ThreatEntryAdditions = _reflection.GeneratedProtocolMessageType(
         "__module__": "google.cloud.webrisk_v1beta1.proto.webrisk_pb2",
         "__doc__": """Contains the set of entries to add to a local database. May contain a
   combination of compressed and raw data in a single response.
+  
   Attributes:
       raw_hashes:
           The raw SHA256-formatted entries. Repeated to allow returning
@@ -1499,6 +1507,7 @@ ThreatEntryRemovals = _reflection.GeneratedProtocolMessageType(
         "DESCRIPTOR": _THREATENTRYREMOVALS,
         "__module__": "google.cloud.webrisk_v1beta1.proto.webrisk_pb2",
         "__doc__": """Contains the set of entries to remove from a local database.
+  
   Attributes:
       raw_indices:
           The raw removal indices for a local list.
@@ -1521,6 +1530,7 @@ RawIndices = _reflection.GeneratedProtocolMessageType(
         "DESCRIPTOR": _RAWINDICES,
         "__module__": "google.cloud.webrisk_v1beta1.proto.webrisk_pb2",
         "__doc__": """A set of raw indices to remove from a local list.
+  
   Attributes:
       indices:
           The indices to remove from a lexicographically-sorted local
@@ -1543,6 +1553,7 @@ RawHashes = _reflection.GeneratedProtocolMessageType(
   Used for sending ThreatEntryAdditons to clients that do not support
   compression, or when sending non-4-byte hashes to clients that do
   support compression.
+  
   Attributes:
       prefix_size:
           The number of bytes for each prefix encoded below. This field
@@ -1566,6 +1577,7 @@ RiceDeltaEncoding = _reflection.GeneratedProtocolMessageType(
         "__module__": "google.cloud.webrisk_v1beta1.proto.webrisk_pb2",
         "__doc__": """The Rice-Golomb encoded data. Used for sending compressed 4-byte
   hashes or compressed removal indices.
+  
   Attributes:
       first_value:
           The offset of the first entry in the encoded data, or, if only
