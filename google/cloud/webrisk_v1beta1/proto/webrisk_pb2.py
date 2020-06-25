@@ -1431,7 +1431,8 @@ ThreatEntryRemovals = _reflection.GeneratedProtocolMessageType(
     {
         "DESCRIPTOR": _THREATENTRYREMOVALS,
         "__module__": "google.cloud.webrisk_v1beta1.proto.webrisk_pb2",
-        "__doc__": """Contains the set of entries to remove from a local database.
+        "__doc__": """Contains the set of entries to remove from a local
+  database.
   
   
   Attributes:
