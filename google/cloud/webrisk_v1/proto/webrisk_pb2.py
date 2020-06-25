@@ -25,6 +25,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
     package="google.cloud.webrisk.v1",
     syntax="proto3",
     serialized_options=b"\n\025com.google.webrisk.v1B\014WebRiskProtoP\001Z>google.golang.org/genproto/googleapis/cloud/webrisk/v1;webrisk\242\002\004GCWR\252\002\027Google.Cloud.WebRisk.V1\312\002\027Google\\Cloud\\WebRisk\\V1\352\002\032Google::Cloud::WebRisk::V1",
+    create_key=_descriptor._internal_create_key,
     serialized_pb=b'\n+google/cloud/webrisk_v1/proto/webrisk.proto\x12\x17google.cloud.webrisk.v1\x1a\x1cgoogle/api/annotations.proto\x1a\x17google/api/client.proto\x1a\x1fgoogle/api/field_behavior.proto\x1a\x19google/api/resource.proto\x1a\x1fgoogle/protobuf/timestamp.proto"\xe3\x02\n\x1c\x43omputeThreatListDiffRequest\x12=\n\x0bthreat_type\x18\x01 \x01(\x0e\x32#.google.cloud.webrisk.v1.ThreatTypeB\x03\xe0\x41\x02\x12\x15\n\rversion_token\x18\x02 \x01(\x0c\x12[\n\x0b\x63onstraints\x18\x03 \x01(\x0b\x32\x41.google.cloud.webrisk.v1.ComputeThreatListDiffRequest.ConstraintsB\x03\xe0\x41\x02\x1a\x8f\x01\n\x0b\x43onstraints\x12\x18\n\x10max_diff_entries\x18\x01 \x01(\x05\x12\x1c\n\x14max_database_entries\x18\x02 \x01(\x05\x12H\n\x16supported_compressions\x18\x03 \x03(\x0e\x32(.google.cloud.webrisk.v1.CompressionType"\x86\x04\n\x1d\x43omputeThreatListDiffResponse\x12Z\n\rresponse_type\x18\x04 \x01(\x0e\x32\x43.google.cloud.webrisk.v1.ComputeThreatListDiffResponse.ResponseType\x12@\n\tadditions\x18\x05 \x01(\x0b\x32-.google.cloud.webrisk.v1.ThreatEntryAdditions\x12>\n\x08removals\x18\x06 \x01(\x0b\x32,.google.cloud.webrisk.v1.ThreatEntryRemovals\x12\x19\n\x11new_version_token\x18\x07 \x01(\x0c\x12Q\n\x08\x63hecksum\x18\x08 \x01(\x0b\x32?.google.cloud.webrisk.v1.ComputeThreatListDiffResponse.Checksum\x12\x39\n\x15recommended_next_diff\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x1a\x1a\n\x08\x43hecksum\x12\x0e\n\x06sha256\x18\x01 \x01(\x0c"B\n\x0cResponseType\x12\x1d\n\x19RESPONSE_TYPE_UNSPECIFIED\x10\x00\x12\x08\n\x04\x44IFF\x10\x01\x12\t\n\x05RESET\x10\x02"e\n\x11SearchUrisRequest\x12\x10\n\x03uri\x18\x01 \x01(\tB\x03\xe0\x41\x02\x12>\n\x0cthreat_types\x18\x02 \x03(\x0e\x32#.google.cloud.webrisk.v1.ThreatTypeB\x03\xe0\x41\x02"\xd4\x01\n\x12SearchUrisResponse\x12\x45\n\x06threat\x18\x01 \x01(\x0b\x32\x35.google.cloud.webrisk.v1.SearchUrisResponse.ThreatUri\x1aw\n\tThreatUri\x12\x39\n\x0cthreat_types\x18\x01 \x03(\x0e\x32#.google.cloud.webrisk.v1.ThreatType\x12/\n\x0b\x65xpire_time\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.Timestamp"j\n\x13SearchHashesRequest\x12\x13\n\x0bhash_prefix\x18\x01 \x01(\x0c\x12>\n\x0cthreat_types\x18\x02 \x03(\x0e\x32#.google.cloud.webrisk.v1.ThreatTypeB\x03\xe0\x41\x02"\xa4\x02\n\x14SearchHashesResponse\x12I\n\x07threats\x18\x01 \x03(\x0b\x32\x38.google.cloud.webrisk.v1.SearchHashesResponse.ThreatHash\x12\x38\n\x14negative_expire_time\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x1a\x86\x01\n\nThreatHash\x12\x39\n\x0cthreat_types\x18\x01 \x03(\x0e\x32#.google.cloud.webrisk.v1.ThreatType\x12\x0c\n\x04hash\x18\x02 \x01(\x0c\x12/\n\x0b\x65xpire_time\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.Timestamp"\x8f\x01\n\x14ThreatEntryAdditions\x12\x36\n\nraw_hashes\x18\x01 \x03(\x0b\x32".google.cloud.webrisk.v1.RawHashes\x12?\n\x0brice_hashes\x18\x02 \x01(\x0b\x32*.google.cloud.webrisk.v1.RiceDeltaEncoding"\x91\x01\n\x13ThreatEntryRemovals\x12\x38\n\x0braw_indices\x18\x01 \x01(\x0b\x32#.google.cloud.webrisk.v1.RawIndices\x12@\n\x0crice_indices\x18\x02 \x01(\x0b\x32*.google.cloud.webrisk.v1.RiceDeltaEncoding"\x1d\n\nRawIndices\x12\x0f\n\x07indices\x18\x01 \x03(\x05"4\n\tRawHashes\x12\x13\n\x0bprefix_size\x18\x01 \x01(\x05\x12\x12\n\nraw_hashes\x18\x02 \x01(\x0c"k\n\x11RiceDeltaEncoding\x12\x13\n\x0b\x66irst_value\x18\x01 \x01(\x03\x12\x16\n\x0erice_parameter\x18\x02 \x01(\x05\x12\x13\n\x0b\x65ntry_count\x18\x03 \x01(\x05\x12\x14\n\x0c\x65ncoded_data\x18\x04 \x01(\x0c"\x1e\n\nSubmission\x12\x10\n\x03uri\x18\x01 \x01(\tB\x03\xe0\x41\x02"\x9c\x01\n\x17\x43reateSubmissionRequest\x12\x43\n\x06parent\x18\x01 \x01(\tB3\xe0\x41\x02\xfa\x41-\n+cloudresourcemanager.googleapis.com/Project\x12<\n\nsubmission\x18\x02 \x01(\x0b\x32#.google.cloud.webrisk.v1.SubmissionB\x03\xe0\x41\x02*e\n\nThreatType\x12\x1b\n\x17THREAT_TYPE_UNSPECIFIED\x10\x00\x12\x0b\n\x07MALWARE\x10\x01\x12\x16\n\x12SOCIAL_ENGINEERING\x10\x02\x12\x15\n\x11UNWANTED_SOFTWARE\x10\x03*F\n\x0f\x43ompressionType\x12 \n\x1c\x43OMPRESSION_TYPE_UNSPECIFIED\x10\x00\x12\x07\n\x03RAW\x10\x01\x12\x08\n\x04RICE\x10\x02\x32\xa3\x06\n\x0eWebRiskService\x12\xd3\x01\n\x15\x43omputeThreatListDiff\x12\x35.google.cloud.webrisk.v1.ComputeThreatListDiffRequest\x1a\x36.google.cloud.webrisk.v1.ComputeThreatListDiffResponse"K\x82\xd3\xe4\x93\x02\x1d\x12\x1b/v1/threatLists:computeDiff\xda\x41%threat_type,version_token,constraints\x12\x91\x01\n\nSearchUris\x12*.google.cloud.webrisk.v1.SearchUrisRequest\x1a+.google.cloud.webrisk.v1.SearchUrisResponse"*\x82\xd3\xe4\x93\x02\x11\x12\x0f/v1/uris:search\xda\x41\x10uri,threat_types\x12\xa1\x01\n\x0cSearchHashes\x12,.google.cloud.webrisk.v1.SearchHashesRequest\x1a-.google.cloud.webrisk.v1.SearchHashesResponse"4\x82\xd3\xe4\x93\x02\x13\x12\x11/v1/hashes:search\xda\x41\x18hash_prefix,threat_types\x12\xb6\x01\n\x10\x43reateSubmission\x12\x30.google.cloud.webrisk.v1.CreateSubmissionRequest\x1a#.google.cloud.webrisk.v1.Submission"K\x82\xd3\xe4\x93\x02\x31"#/v1/{parent=projects/*}/submissions:\nsubmission\xda\x41\x11parent,submission\x1aJ\xca\x41\x16webrisk.googleapis.com\xd2\x41.https://www.googleapis.com/auth/cloud-platformB\xbf\x01\n\x15\x63om.google.webrisk.v1B\x0cWebRiskProtoP\x01Z>google.golang.org/genproto/googleapis/cloud/webrisk/v1;webrisk\xa2\x02\x04GCWR\xaa\x02\x17Google.Cloud.WebRisk.V1\xca\x02\x17Google\\Cloud\\WebRisk\\V1\xea\x02\x1aGoogle::Cloud::WebRisk::V1b\x06proto3',
     dependencies=[
         google_dot_api_dot_annotations__pb2.DESCRIPTOR,
@@ -40,6 +41,7 @@ _THREATTYPE = _descriptor.EnumDescriptor(
     full_name="google.cloud.webrisk.v1.ThreatType",
     filename=None,
     file=DESCRIPTOR,
+    create_key=_descriptor._internal_create_key,
     values=[
         _descriptor.EnumValueDescriptor(
             name="THREAT_TYPE_UNSPECIFIED",
@@ -47,9 +49,15 @@ _THREATTYPE = _descriptor.EnumDescriptor(
             number=0,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
-            name="MALWARE", index=1, number=1, serialized_options=None, type=None
+            name="MALWARE",
+            index=1,
+            number=1,
+            serialized_options=None,
+            type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
             name="SOCIAL_ENGINEERING",
@@ -57,6 +65,7 @@ _THREATTYPE = _descriptor.EnumDescriptor(
             number=2,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
             name="UNWANTED_SOFTWARE",
@@ -64,6 +73,7 @@ _THREATTYPE = _descriptor.EnumDescriptor(
             number=3,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     containing_type=None,
@@ -79,6 +89,7 @@ _COMPRESSIONTYPE = _descriptor.EnumDescriptor(
     full_name="google.cloud.webrisk.v1.CompressionType",
     filename=None,
     file=DESCRIPTOR,
+    create_key=_descriptor._internal_create_key,
     values=[
         _descriptor.EnumValueDescriptor(
             name="COMPRESSION_TYPE_UNSPECIFIED",
@@ -86,12 +97,23 @@ _COMPRESSIONTYPE = _descriptor.EnumDescriptor(
             number=0,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
-            name="RAW", index=1, number=1, serialized_options=None, type=None
+            name="RAW",
+            index=1,
+            number=1,
+            serialized_options=None,
+            type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
-            name="RICE", index=2, number=2, serialized_options=None, type=None
+            name="RICE",
+            index=2,
+            number=2,
+            serialized_options=None,
+            type=None,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     containing_type=None,
@@ -116,6 +138,7 @@ _COMPUTETHREATLISTDIFFRESPONSE_RESPONSETYPE = _descriptor.EnumDescriptor(
     full_name="google.cloud.webrisk.v1.ComputeThreatListDiffResponse.ResponseType",
     filename=None,
     file=DESCRIPTOR,
+    create_key=_descriptor._internal_create_key,
     values=[
         _descriptor.EnumValueDescriptor(
             name="RESPONSE_TYPE_UNSPECIFIED",
@@ -123,12 +146,23 @@ _COMPUTETHREATLISTDIFFRESPONSE_RESPONSETYPE = _descriptor.EnumDescriptor(
             number=0,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
-            name="DIFF", index=1, number=1, serialized_options=None, type=None
+            name="DIFF",
+            index=1,
+            number=1,
+            serialized_options=None,
+            type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
-            name="RESET", index=2, number=2, serialized_options=None, type=None
+            name="RESET",
+            index=2,
+            number=2,
+            serialized_options=None,
+            type=None,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     containing_type=None,
@@ -145,6 +179,7 @@ _COMPUTETHREATLISTDIFFREQUEST_CONSTRAINTS = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="max_diff_entries",
@@ -163,6 +198,7 @@ _COMPUTETHREATLISTDIFFREQUEST_CONSTRAINTS = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="max_database_entries",
@@ -181,6 +217,7 @@ _COMPUTETHREATLISTDIFFREQUEST_CONSTRAINTS = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="supported_compressions",
@@ -199,6 +236,7 @@ _COMPUTETHREATLISTDIFFREQUEST_CONSTRAINTS = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     extensions=[],
@@ -219,6 +257,7 @@ _COMPUTETHREATLISTDIFFREQUEST = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="threat_type",
@@ -237,6 +276,7 @@ _COMPUTETHREATLISTDIFFREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\002",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="version_token",
@@ -255,6 +295,7 @@ _COMPUTETHREATLISTDIFFREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="constraints",
@@ -273,6 +314,7 @@ _COMPUTETHREATLISTDIFFREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\002",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     extensions=[],
@@ -294,6 +336,7 @@ _COMPUTETHREATLISTDIFFRESPONSE_CHECKSUM = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="sha256",
@@ -312,6 +355,7 @@ _COMPUTETHREATLISTDIFFRESPONSE_CHECKSUM = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         )
     ],
     extensions=[],
@@ -332,6 +376,7 @@ _COMPUTETHREATLISTDIFFRESPONSE = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="response_type",
@@ -350,6 +395,7 @@ _COMPUTETHREATLISTDIFFRESPONSE = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="additions",
@@ -368,6 +414,7 @@ _COMPUTETHREATLISTDIFFRESPONSE = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="removals",
@@ -386,6 +433,7 @@ _COMPUTETHREATLISTDIFFRESPONSE = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="new_version_token",
@@ -404,6 +452,7 @@ _COMPUTETHREATLISTDIFFRESPONSE = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="checksum",
@@ -422,6 +471,7 @@ _COMPUTETHREATLISTDIFFRESPONSE = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="recommended_next_diff",
@@ -440,6 +490,7 @@ _COMPUTETHREATLISTDIFFRESPONSE = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     extensions=[],
@@ -461,6 +512,7 @@ _SEARCHURISREQUEST = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="uri",
@@ -479,6 +531,7 @@ _SEARCHURISREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\002",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="threat_types",
@@ -497,6 +550,7 @@ _SEARCHURISREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\002",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     extensions=[],
@@ -518,6 +572,7 @@ _SEARCHURISRESPONSE_THREATURI = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="threat_types",
@@ -536,6 +591,7 @@ _SEARCHURISRESPONSE_THREATURI = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="expire_time",
@@ -554,6 +610,7 @@ _SEARCHURISRESPONSE_THREATURI = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     extensions=[],
@@ -574,6 +631,7 @@ _SEARCHURISRESPONSE = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="threat",
@@ -592,6 +650,7 @@ _SEARCHURISRESPONSE = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         )
     ],
     extensions=[],
@@ -613,6 +672,7 @@ _SEARCHHASHESREQUEST = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="hash_prefix",
@@ -631,6 +691,7 @@ _SEARCHHASHESREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="threat_types",
@@ -649,6 +710,7 @@ _SEARCHHASHESREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\002",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     extensions=[],
@@ -670,6 +732,7 @@ _SEARCHHASHESRESPONSE_THREATHASH = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="threat_types",
@@ -688,6 +751,7 @@ _SEARCHHASHESRESPONSE_THREATHASH = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="hash",
@@ -706,6 +770,7 @@ _SEARCHHASHESRESPONSE_THREATHASH = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="expire_time",
@@ -724,6 +789,7 @@ _SEARCHHASHESRESPONSE_THREATHASH = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     extensions=[],
@@ -744,6 +810,7 @@ _SEARCHHASHESRESPONSE = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="threats",
@@ -762,6 +829,7 @@ _SEARCHHASHESRESPONSE = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="negative_expire_time",
@@ -780,6 +848,7 @@ _SEARCHHASHESRESPONSE = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     extensions=[],
@@ -801,6 +870,7 @@ _THREATENTRYADDITIONS = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="raw_hashes",
@@ -819,6 +889,7 @@ _THREATENTRYADDITIONS = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="rice_hashes",
@@ -837,6 +908,7 @@ _THREATENTRYADDITIONS = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     extensions=[],
@@ -858,6 +930,7 @@ _THREATENTRYREMOVALS = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="raw_indices",
@@ -876,6 +949,7 @@ _THREATENTRYREMOVALS = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="rice_indices",
@@ -894,6 +968,7 @@ _THREATENTRYREMOVALS = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     extensions=[],
@@ -915,6 +990,7 @@ _RAWINDICES = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="indices",
@@ -933,6 +1009,7 @@ _RAWINDICES = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         )
     ],
     extensions=[],
@@ -954,6 +1031,7 @@ _RAWHASHES = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="prefix_size",
@@ -972,6 +1050,7 @@ _RAWHASHES = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="raw_hashes",
@@ -990,6 +1069,7 @@ _RAWHASHES = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     extensions=[],
@@ -1011,6 +1091,7 @@ _RICEDELTAENCODING = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="first_value",
@@ -1029,6 +1110,7 @@ _RICEDELTAENCODING = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="rice_parameter",
@@ -1047,6 +1129,7 @@ _RICEDELTAENCODING = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="entry_count",
@@ -1065,6 +1148,7 @@ _RICEDELTAENCODING = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="encoded_data",
@@ -1083,6 +1167,7 @@ _RICEDELTAENCODING = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     extensions=[],
@@ -1104,6 +1189,7 @@ _SUBMISSION = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="uri",
@@ -1122,6 +1208,7 @@ _SUBMISSION = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\002",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         )
     ],
     extensions=[],
@@ -1143,6 +1230,7 @@ _CREATESUBMISSIONREQUEST = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="parent",
@@ -1161,6 +1249,7 @@ _CREATESUBMISSIONREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\002\372A-\n+cloudresourcemanager.googleapis.com/Project",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="submission",
@@ -1179,6 +1268,7 @@ _CREATESUBMISSIONREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\002",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     extensions=[],
@@ -1668,6 +1758,7 @@ _WEBRISKSERVICE = _descriptor.ServiceDescriptor(
     file=DESCRIPTOR,
     index=0,
     serialized_options=b"\312A\026webrisk.googleapis.com\322A.https://www.googleapis.com/auth/cloud-platform",
+    create_key=_descriptor._internal_create_key,
     serialized_start=2675,
     serialized_end=3478,
     methods=[
@@ -1679,6 +1770,7 @@ _WEBRISKSERVICE = _descriptor.ServiceDescriptor(
             input_type=_COMPUTETHREATLISTDIFFREQUEST,
             output_type=_COMPUTETHREATLISTDIFFRESPONSE,
             serialized_options=b"\202\323\344\223\002\035\022\033/v1/threatLists:computeDiff\332A%threat_type,version_token,constraints",
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.MethodDescriptor(
             name="SearchUris",
@@ -1688,6 +1780,7 @@ _WEBRISKSERVICE = _descriptor.ServiceDescriptor(
             input_type=_SEARCHURISREQUEST,
             output_type=_SEARCHURISRESPONSE,
             serialized_options=b"\202\323\344\223\002\021\022\017/v1/uris:search\332A\020uri,threat_types",
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.MethodDescriptor(
             name="SearchHashes",
@@ -1697,6 +1790,7 @@ _WEBRISKSERVICE = _descriptor.ServiceDescriptor(
             input_type=_SEARCHHASHESREQUEST,
             output_type=_SEARCHHASHESRESPONSE,
             serialized_options=b"\202\323\344\223\002\023\022\021/v1/hashes:search\332A\030hash_prefix,threat_types",
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.MethodDescriptor(
             name="CreateSubmission",
@@ -1706,6 +1800,7 @@ _WEBRISKSERVICE = _descriptor.ServiceDescriptor(
             input_type=_CREATESUBMISSIONREQUEST,
             output_type=_SUBMISSION,
             serialized_options=b'\202\323\344\223\0021"#/v1/{parent=projects/*}/submissions:\nsubmission\332A\021parent,submission',
+            create_key=_descriptor._internal_create_key,
         ),
     ],
 )
