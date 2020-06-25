@@ -163,9 +163,14 @@ class WebRiskServiceGrpcTransport(object):
     def create_submission(self):
         """Return the gRPC stub for :meth:`WebRiskServiceClient.create_submission`.
 
-        The maximum size in number of entries. The diff will not contain
-        more entries than this value. This should be a power of 2 between
-        2\ **10 and 2**\ 20. If zero, no diff size limit is set.
+        Creates a Submission of a URI suspected of containing phishing
+        content to be reviewed. If the result verifies the existence of
+        malicious phishing content, the site will be added to the `Google's
+        Social Engineering
+        lists <https://support.google.com/webmasters/answer/6350487/>`__ in
+        order to protect users that could get exposed to this threat in the
+        future. Only projects with CREATE_SUBMISSION_USERS visibility can use
+        this method.
 
         Returns:
             Callable: A callable which accepts the appropriate

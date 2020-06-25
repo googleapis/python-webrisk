@@ -1514,9 +1514,8 @@ ThreatEntryAdditions = _reflection.GeneratedProtocolMessageType(
     {
         "DESCRIPTOR": _THREATENTRYADDITIONS,
         "__module__": "google.cloud.webrisk_v1.proto.webrisk_pb2",
-        "__doc__": """Contains the set of entries to add to a local database.
-  May contain a combination of compressed and raw data in a single
-  response.
+        "__doc__": """Contains the set of entries to add to a local database. May contain a
+  combination of compressed and raw data in a single response.
   
   
   Attributes:

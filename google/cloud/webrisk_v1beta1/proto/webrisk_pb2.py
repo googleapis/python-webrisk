@@ -1337,7 +1337,8 @@ SearchHashesRequest = _reflection.GeneratedProtocolMessageType(
     {
         "DESCRIPTOR": _SEARCHHASHESREQUEST,
         "__module__": "google.cloud.webrisk_v1beta1.proto.webrisk_pb2",
-        "__doc__": """Request to return full hashes matched by the provided hash prefixes.
+        "__doc__": """Request to return full hashes matched by the provided hash
+  prefixes.
   
   
   Attributes:
@@ -1430,8 +1431,7 @@ ThreatEntryRemovals = _reflection.GeneratedProtocolMessageType(
     {
         "DESCRIPTOR": _THREATENTRYREMOVALS,
         "__module__": "google.cloud.webrisk_v1beta1.proto.webrisk_pb2",
-        "__doc__": """Contains the set of entries to remove from a local
-  database.
+        "__doc__": """Contains the set of entries to remove from a local database.
   
   
   Attributes:
