@@ -38,4 +38,8 @@ class WebRiskServiceClient(web_risk_service_client.WebRiskServiceClient):
     enums = enums
 
 
-__all__ = ("enums", "types", "WebRiskServiceClient")
+__all__ = (
+    "enums",
+    "types",
+    "WebRiskServiceClient",
+)

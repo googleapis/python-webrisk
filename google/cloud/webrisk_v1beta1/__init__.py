@@ -40,4 +40,8 @@ class WebRiskServiceV1Beta1Client(
     enums = enums
 
 
-__all__ = ("enums", "types", "WebRiskServiceV1Beta1Client")
+__all__ = (
+    "enums",
+    "types",
+    "WebRiskServiceV1Beta1Client",
+)
