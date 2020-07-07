@@ -3,23 +3,23 @@
     {
       "git": {
         "name": ".",
-        "remote": "git@github.com:googleapis/python-webrisk.git",
-        "sha": "a9dd7ccf69cb69dc1db3bdcab1243c8e7a1dea18"
+        "remote": "https://github.com/googleapis/python-webrisk.git",
+        "sha": "6cda9039c6601fdb5e06870ae282480dc03590f0"
       }
     },
     {
       "git": {
         "name": "googleapis",
         "remote": "https://github.com/googleapis/googleapis.git",
-        "sha": "e49496351bd7aa70ba88015979de4666652c4b10",
-        "internalRef": "315761579"
+        "sha": "b882b8e6bfcd708042ff00f7adc67ce750817dd0",
+        "internalRef": "318028816"
       }
     },
     {
       "git": {
         "name": "synthtool",
         "remote": "https://github.com/googleapis/synthtool.git",
-        "sha": "fc0fce9d9ae75b536754b2d0f49408205d4c7a53"
+        "sha": "303271797a360f8a439203413f13a160f2f5b3b4"
       }
     }
   ],

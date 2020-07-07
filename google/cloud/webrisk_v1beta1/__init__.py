@@ -15,35 +15,33 @@
 # limitations under the License.
 #
 
-from .services.web_risk_service_v1_beta1 import WebRiskServiceV1Beta1Client
-from .types.webrisk import CompressionType
-from .types.webrisk import ComputeThreatListDiffRequest
-from .types.webrisk import ComputeThreatListDiffResponse
-from .types.webrisk import RawHashes
-from .types.webrisk import RawIndices
-from .types.webrisk import RiceDeltaEncoding
-from .types.webrisk import SearchHashesRequest
-from .types.webrisk import SearchHashesResponse
-from .types.webrisk import SearchUrisRequest
-from .types.webrisk import SearchUrisResponse
-from .types.webrisk import ThreatEntryAdditions
-from .types.webrisk import ThreatEntryRemovals
-from .types.webrisk import ThreatType
+from __future__ import absolute_import
+import sys
+import warnings
+
+from google.cloud.webrisk_v1beta1 import types
+from google.cloud.webrisk_v1beta1.gapic import enums
+from google.cloud.webrisk_v1beta1.gapic import web_risk_service_v1_beta1_client
+
+
+if sys.version_info[:2] == (2, 7):
+    message = (
+        "A future version of this library will drop support for Python 2.7. "
+        "More details about Python 2 support for Google Cloud Client Libraries "
+        "can be found at https://cloud.google.com/python/docs/python2-sunset/"
+    )
+    warnings.warn(message, DeprecationWarning)
+
+
+class WebRiskServiceV1Beta1Client(
+    web_risk_service_v1_beta1_client.WebRiskServiceV1Beta1Client
+):
+    __doc__ = web_risk_service_v1_beta1_client.WebRiskServiceV1Beta1Client.__doc__
+    enums = enums
 
 
 __all__ = (
-    "CompressionType",
-    "ComputeThreatListDiffRequest",
-    "ComputeThreatListDiffResponse",
-    "RawHashes",
-    "RawIndices",
-    "RiceDeltaEncoding",
-    "SearchHashesRequest",
-    "SearchHashesResponse",
-    "SearchUrisRequest",
-    "SearchUrisResponse",
-    "ThreatEntryAdditions",
-    "ThreatEntryRemovals",
-    "ThreatType",
+    "enums",
+    "types",
     "WebRiskServiceV1Beta1Client",
 )
