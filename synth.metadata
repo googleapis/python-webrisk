@@ -4,22 +4,22 @@
       "git": {
         "name": ".",
         "remote": "https://github.com/googleapis/python-webrisk.git",
-        "sha": "acf43c60e7e6ba17c4f91a8d985da3508775abf2"
+        "sha": "6cda9039c6601fdb5e06870ae282480dc03590f0"
       }
     },
     {
       "git": {
         "name": "googleapis",
         "remote": "https://github.com/googleapis/googleapis.git",
-        "sha": "42ee97c1b93a0e3759bbba3013da309f670a90ab",
-        "internalRef": "307114445"
+        "sha": "b882b8e6bfcd708042ff00f7adc67ce750817dd0",
+        "internalRef": "318028816"
       }
     },
     {
       "git": {
         "name": "synthtool",
         "remote": "https://github.com/googleapis/synthtool.git",
-        "sha": "f5e4c17dc78a966dbf29961dd01f9bbd63e20a04"
+        "sha": "303271797a360f8a439203413f13a160f2f5b3b4"
       }
     }
   ],
@@ -30,7 +30,7 @@
         "apiName": "webrisk",
         "apiVersion": "v1beta1",
         "language": "python",
-        "generator": "bazel"
+        "generator": "gapic-generator-python"
       }
     },
     {
@@ -39,7 +39,7 @@
         "apiName": "webrisk",
         "apiVersion": "v1",
         "language": "python",
-        "generator": "bazel"
+        "generator": "gapic-generator-python"
       }
     }
   ]
