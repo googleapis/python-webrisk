@@ -19,6 +19,6 @@ from .client import WebRiskServiceClient
 from .async_client import WebRiskServiceAsyncClient
 
 __all__ = (
-    'WebRiskServiceClient',
-    'WebRiskServiceAsyncClient',
+    "WebRiskServiceClient",
+    "WebRiskServiceAsyncClient",
 )

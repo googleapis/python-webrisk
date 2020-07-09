@@ -33,3 +33,4 @@ omit =
   */proto/*.py
   */core/*.py
   */site-packages/*.py
+  google/cloud/webrisk/__init__.py
