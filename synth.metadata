@@ -4,15 +4,15 @@
       "git": {
         "name": ".",
         "remote": "https://github.com/googleapis/python-webrisk.git",
-        "sha": "6cda9039c6601fdb5e06870ae282480dc03590f0"
+        "sha": "c06d191a99a629692d31a34424dbd8f89e314354"
       }
     },
     {
       "git": {
         "name": "googleapis",
         "remote": "https://github.com/googleapis/googleapis.git",
-        "sha": "b882b8e6bfcd708042ff00f7adc67ce750817dd0",
-        "internalRef": "318028816"
+        "sha": "a98ede59fdb3120fd1cb0b025bf5a7a7f4345797",
+        "internalRef": "320277413"
       }
     },
     {
