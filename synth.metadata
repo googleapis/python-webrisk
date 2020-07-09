@@ -4,7 +4,7 @@
       "git": {
         "name": ".",
         "remote": "git@github.com:googleapis/python-webrisk.git",
-        "sha": "0a7ac1f4ccb26e6165160f6137e795a9efd8c058"
+        "sha": "d30063f01b6d93fdb50a99b8d5c924406b254ed6"
       }
     },
     {
