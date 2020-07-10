@@ -46,7 +46,7 @@ response = client.search_hashes(threat_types)
 ```py
 from google.cloud import webrisk_v1
 
-client = webrisk_v1.TextToSpeechClient()
+client = webrisk_v1.WebRiskServiceClient()
 
 response = client.search_hashes(request={"threat_types": "[]"})
 
