@@ -40,7 +40,7 @@ Deprecated Python Versions
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 Python == 2.7.
 
-The last version of this library compatible with Python 2.7 is google-cloud-webrisk==0.3.0 
+The last version of this library compatible with Python 2.7 is google-cloud-webrisk==1.0.0 
 
 Installation
 ~~~~~~~~~~~~
