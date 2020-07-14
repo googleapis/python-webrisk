@@ -23,7 +23,7 @@ Methods expect request objects. We provide a script that will convert most commo
 python3 -m pip install google-cloud-webrisk
 ```
 
-* The script `fixup_keywords.py` is shipped with the library. It expects
+* The scripts `fixup_webrisk_v1_keywords.py` and  `fixup_webrisk_v1beta1_keywords.py` shipped with the library. It expects
 an input directory (with the code to convert) and an empty destination directory.
 
 ```sh
