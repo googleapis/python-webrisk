@@ -27,7 +27,7 @@ python3 -m pip install google-cloud-webrisk
 an input directory (with the code to convert) and an empty destination directory.
 
 ```sh
-$ fixup_keywords.py --input-directory .samples/ --output-directory samples/
+$ fixup_webrisk_v1_keywords.py --input-directory .samples/ --output-directory samples/
 ```
 
 **Before:**
