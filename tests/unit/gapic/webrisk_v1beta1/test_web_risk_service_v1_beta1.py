@@ -47,6 +47,17 @@ def client_cert_source_callback():
     return b"cert bytes", b"key bytes"
 
 
+# If default endpoint is localhost, then default mtls endpoint will be the same.
+# This method modifies the default endpoint so the client can produce a different
+# mtls endpoint for endpoint testing purposes.
+def modify_default_endpoint(client):
+    return (
+        "foo.googleapis.com"
+        if ("localhost" in client.DEFAULT_ENDPOINT)
+        else client.DEFAULT_ENDPOINT
+    )
+
+
 def test__get_default_mtls_endpoint():
     api_endpoint = "example.googleapis.com"
     api_mtls_endpoint = "example.mtls.googleapis.com"
@@ -117,6 +128,16 @@ def test_web_risk_service_v1_beta1_client_get_transport_class():
             "grpc_asyncio",
         ),
     ],
+)
+@mock.patch.object(
+    WebRiskServiceV1Beta1Client,
+    "DEFAULT_ENDPOINT",
+    modify_default_endpoint(WebRiskServiceV1Beta1Client),
+)
+@mock.patch.object(
+    WebRiskServiceV1Beta1AsyncClient,
+    "DEFAULT_ENDPOINT",
+    modify_default_endpoint(WebRiskServiceV1Beta1AsyncClient),
 )
 def test_web_risk_service_v1_beta1_client_client_options(
     client_class, transport_class, transport_name
@@ -904,9 +925,13 @@ def test_web_risk_service_v1_beta1_base_transport_error():
 
 def test_web_risk_service_v1_beta1_base_transport():
     # Instantiate the base transport.
-    transport = transports.WebRiskServiceV1Beta1Transport(
-        credentials=credentials.AnonymousCredentials(),
-    )
+    with mock.patch(
+        "google.cloud.webrisk_v1beta1.services.web_risk_service_v1_beta1.transports.WebRiskServiceV1Beta1Transport.__init__"
+    ) as Transport:
+        Transport.return_value = None
+        transport = transports.WebRiskServiceV1Beta1Transport(
+            credentials=credentials.AnonymousCredentials(),
+        )
 
     # Every method on the transport should just blindly
     # raise NotImplementedError.
@@ -922,7 +947,12 @@ def test_web_risk_service_v1_beta1_base_transport():
 
 def test_web_risk_service_v1_beta1_base_transport_with_credentials_file():
     # Instantiate the base transport with a credentials file
-    with mock.patch.object(auth, "load_credentials_from_file") as load_creds:
+    with mock.patch.object(
+        auth, "load_credentials_from_file"
+    ) as load_creds, mock.patch(
+        "google.cloud.webrisk_v1beta1.services.web_risk_service_v1_beta1.transports.WebRiskServiceV1Beta1Transport._prep_wrapped_messages"
+    ) as Transport:
+        Transport.return_value = None
         load_creds.return_value = (credentials.AnonymousCredentials(), None)
         transport = transports.WebRiskServiceV1Beta1Transport(
             credentials_file="credentials.json", quota_project_id="octopus",

@@ -17,12 +17,22 @@
 
 import abc
 import typing
+import pkg_resources
 
 from google import auth
 from google.api_core import exceptions  # type: ignore
+from google.api_core import gapic_v1  # type: ignore
 from google.auth import credentials  # type: ignore
 
 from google.cloud.webrisk_v1.types import webrisk
+
+
+try:
+    _client_info = gapic_v1.client_info.ClientInfo(
+        gapic_version=pkg_resources.get_distribution("google-cloud-webrisk",).version,
+    )
+except pkg_resources.DistributionNotFound:
+    _client_info = gapic_v1.client_info.ClientInfo()
 
 
 class WebRiskServiceTransport(abc.ABC):
@@ -80,6 +90,56 @@ class WebRiskServiceTransport(abc.ABC):
 
         # Save the credentials.
         self._credentials = credentials
+
+        # Lifted into its own function so it can be stubbed out during tests.
+        self._prep_wrapped_messages()
+
+    def _prep_wrapped_messages(self):
+        # Precompute the wrapped methods.
+        self._wrapped_methods = {
+            self.compute_threat_list_diff: gapic_v1.method.wrap_method(
+                self.compute_threat_list_diff,
+                default_retry=retries.Retry(
+                    initial=0.1,
+                    maximum=60.0,
+                    multiplier=1.3,
+                    predicate=retries.if_exception_type(
+                        exceptions.ServiceUnavailable, exceptions.DeadlineExceeded,
+                    ),
+                ),
+                default_timeout=600.0,
+                client_info=_client_info,
+            ),
+            self.search_uris: gapic_v1.method.wrap_method(
+                self.search_uris,
+                default_retry=retries.Retry(
+                    initial=0.1,
+                    maximum=60.0,
+                    multiplier=1.3,
+                    predicate=retries.if_exception_type(
+                        exceptions.ServiceUnavailable, exceptions.DeadlineExceeded,
+                    ),
+                ),
+                default_timeout=600.0,
+                client_info=_client_info,
+            ),
+            self.search_hashes: gapic_v1.method.wrap_method(
+                self.search_hashes,
+                default_retry=retries.Retry(
+                    initial=0.1,
+                    maximum=60.0,
+                    multiplier=1.3,
+                    predicate=retries.if_exception_type(
+                        exceptions.ServiceUnavailable, exceptions.DeadlineExceeded,
+                    ),
+                ),
+                default_timeout=600.0,
+                client_info=_client_info,
+            ),
+            self.create_submission: gapic_v1.method.wrap_method(
+                self.create_submission, default_timeout=60.0, client_info=_client_info,
+            ),
+        }
 
     @property
     def compute_threat_list_diff(
