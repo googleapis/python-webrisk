@@ -15,8 +15,12 @@
 # limitations under the License.
 #
 
-from google.cloud.webrisk_v1.services.web_risk_service.async_client import WebRiskServiceAsyncClient
-from google.cloud.webrisk_v1.services.web_risk_service.client import WebRiskServiceClient
+from google.cloud.webrisk_v1.services.web_risk_service.async_client import (
+    WebRiskServiceAsyncClient,
+)
+from google.cloud.webrisk_v1.services.web_risk_service.client import (
+    WebRiskServiceClient,
+)
 from google.cloud.webrisk_v1.types.webrisk import CompressionType
 from google.cloud.webrisk_v1.types.webrisk import ComputeThreatListDiffRequest
 from google.cloud.webrisk_v1.types.webrisk import ComputeThreatListDiffResponse
@@ -34,21 +38,21 @@ from google.cloud.webrisk_v1.types.webrisk import ThreatEntryRemovals
 from google.cloud.webrisk_v1.types.webrisk import ThreatType
 
 __all__ = (
-    'CompressionType',
-    'ComputeThreatListDiffRequest',
-    'ComputeThreatListDiffResponse',
-    'CreateSubmissionRequest',
-    'RawHashes',
-    'RawIndices',
-    'RiceDeltaEncoding',
-    'SearchHashesRequest',
-    'SearchHashesResponse',
-    'SearchUrisRequest',
-    'SearchUrisResponse',
-    'Submission',
-    'ThreatEntryAdditions',
-    'ThreatEntryRemovals',
-    'ThreatType',
-    'WebRiskServiceAsyncClient',
-    'WebRiskServiceClient',
+    "CompressionType",
+    "ComputeThreatListDiffRequest",
+    "ComputeThreatListDiffResponse",
+    "CreateSubmissionRequest",
+    "RawHashes",
+    "RawIndices",
+    "RiceDeltaEncoding",
+    "SearchHashesRequest",
+    "SearchHashesResponse",
+    "SearchUrisRequest",
+    "SearchUrisResponse",
+    "Submission",
+    "ThreatEntryAdditions",
+    "ThreatEntryRemovals",
+    "ThreatType",
+    "WebRiskServiceAsyncClient",
+    "WebRiskServiceClient",
 )

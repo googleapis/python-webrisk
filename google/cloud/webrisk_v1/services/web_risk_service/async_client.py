@@ -21,12 +21,12 @@ import re
 from typing import Dict, Sequence, Tuple, Type, Union
 import pkg_resources
 
-import google.api_core.client_options as ClientOptions # type: ignore
-from google.api_core import exceptions                 # type: ignore
-from google.api_core import gapic_v1                   # type: ignore
-from google.api_core import retry as retries           # type: ignore
-from google.auth import credentials                    # type: ignore
-from google.oauth2 import service_account              # type: ignore
+import google.api_core.client_options as ClientOptions  # type: ignore
+from google.api_core import exceptions  # type: ignore
+from google.api_core import gapic_v1  # type: ignore
+from google.api_core import retry as retries  # type: ignore
+from google.auth import credentials  # type: ignore
+from google.oauth2 import service_account  # type: ignore
 
 from google.cloud.webrisk_v1.types import webrisk
 from google.protobuf import timestamp_pb2 as timestamp  # type: ignore
@@ -49,13 +49,17 @@ class WebRiskServiceAsyncClient:
     from_service_account_file = WebRiskServiceClient.from_service_account_file
     from_service_account_json = from_service_account_file
 
-    get_transport_class = functools.partial(type(WebRiskServiceClient).get_transport_class, type(WebRiskServiceClient))
+    get_transport_class = functools.partial(
+        type(WebRiskServiceClient).get_transport_class, type(WebRiskServiceClient)
+    )
 
-    def __init__(self, *,
-            credentials: credentials.Credentials = None,
-            transport: Union[str, WebRiskServiceTransport] = 'grpc_asyncio',
-            client_options: ClientOptions = None,
-            ) -> None:
+    def __init__(
+        self,
+        *,
+        credentials: credentials.Credentials = None,
+        transport: Union[str, WebRiskServiceTransport] = "grpc_asyncio",
+        client_options: ClientOptions = None,
+    ) -> None:
         """Instantiate the web risk service client.
 
         Args:
@@ -87,21 +91,20 @@ class WebRiskServiceAsyncClient:
         """
 
         self._client = WebRiskServiceClient(
-            credentials=credentials,
-            transport=transport,
-            client_options=client_options,
+            credentials=credentials, transport=transport, client_options=client_options,
         )
 
-    async def compute_threat_list_diff(self,
-            request: webrisk.ComputeThreatListDiffRequest = None,
-            *,
-            threat_type: webrisk.ThreatType = None,
-            version_token: bytes = None,
-            constraints: webrisk.ComputeThreatListDiffRequest.Constraints = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> webrisk.ComputeThreatListDiffResponse:
+    async def compute_threat_list_diff(
+        self,
+        request: webrisk.ComputeThreatListDiffRequest = None,
+        *,
+        threat_type: webrisk.ThreatType = None,
+        version_token: bytes = None,
+        constraints: webrisk.ComputeThreatListDiffRequest.Constraints = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> webrisk.ComputeThreatListDiffResponse:
         r"""Gets the most recent threat list diffs. These diffs
         should be applied to a local database of hashes to keep
         it up-to-date. If the local database is empty or
@@ -155,8 +158,10 @@ class WebRiskServiceAsyncClient:
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
         if request is not None and any([threat_type, version_token, constraints]):
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         request = webrisk.ComputeThreatListDiffRequest(request)
 
@@ -179,25 +184,21 @@ class WebRiskServiceAsyncClient:
         )
 
         # Send the request.
-        response = await rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
-    async def search_uris(self,
-            request: webrisk.SearchUrisRequest = None,
-            *,
-            uri: str = None,
-            threat_types: Sequence[webrisk.ThreatType] = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> webrisk.SearchUrisResponse:
+    async def search_uris(
+        self,
+        request: webrisk.SearchUrisRequest = None,
+        *,
+        uri: str = None,
+        threat_types: Sequence[webrisk.ThreatType] = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> webrisk.SearchUrisResponse:
         r"""This method is used to check whether a URI is on a
         given threatList. Multiple threatLists may be searched
         in a single query. The response will list all requested
@@ -237,8 +238,10 @@ class WebRiskServiceAsyncClient:
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
         if request is not None and any([uri, threat_types]):
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         request = webrisk.SearchUrisRequest(request)
 
@@ -259,25 +262,21 @@ class WebRiskServiceAsyncClient:
         )
 
         # Send the request.
-        response = await rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
-    async def search_hashes(self,
-            request: webrisk.SearchHashesRequest = None,
-            *,
-            hash_prefix: bytes = None,
-            threat_types: Sequence[webrisk.ThreatType] = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> webrisk.SearchHashesResponse:
+    async def search_hashes(
+        self,
+        request: webrisk.SearchHashesRequest = None,
+        *,
+        hash_prefix: bytes = None,
+        threat_types: Sequence[webrisk.ThreatType] = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> webrisk.SearchHashesResponse:
         r"""Gets the full hashes that match the requested hash
         prefix. This is used after a hash prefix is looked up in
         a threatList and there is a match. The client side
@@ -319,8 +318,10 @@ class WebRiskServiceAsyncClient:
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
         if request is not None and any([hash_prefix, threat_types]):
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         request = webrisk.SearchHashesRequest(request)
 
@@ -341,25 +342,21 @@ class WebRiskServiceAsyncClient:
         )
 
         # Send the request.
-        response = await rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
-    async def create_submission(self,
-            request: webrisk.CreateSubmissionRequest = None,
-            *,
-            parent: str = None,
-            submission: webrisk.Submission = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> webrisk.Submission:
+    async def create_submission(
+        self,
+        request: webrisk.CreateSubmissionRequest = None,
+        *,
+        parent: str = None,
+        submission: webrisk.Submission = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> webrisk.Submission:
         r"""Creates a Submission of a URI suspected of containing phishing
         content to be reviewed. If the result verifies the existence of
         malicious phishing content, the site will be added to the
@@ -404,8 +401,10 @@ class WebRiskServiceAsyncClient:
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
         if request is not None and any([parent, submission]):
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         request = webrisk.CreateSubmissionRequest(request)
 
@@ -428,36 +427,22 @@ class WebRiskServiceAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('parent', request.parent),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
         )
 
         # Send the request.
-        response = await rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
 
-
-
-
 try:
     _client_info = gapic_v1.client_info.ClientInfo(
-        gapic_version=pkg_resources.get_distribution(
-            'google-cloud-webrisk',
-        ).version,
+        gapic_version=pkg_resources.get_distribution("google-cloud-webrisk",).version,
     )
 except pkg_resources.DistributionNotFound:
     _client_info = gapic_v1.client_info.ClientInfo()
 
 
-__all__ = (
-    'WebRiskServiceAsyncClient',
-)
+__all__ = ("WebRiskServiceAsyncClient",)

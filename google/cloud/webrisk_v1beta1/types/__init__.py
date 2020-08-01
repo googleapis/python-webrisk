@@ -15,19 +15,31 @@
 # limitations under the License.
 #
 
-from .webrisk import (ComputeThreatListDiffRequest, ComputeThreatListDiffResponse, SearchUrisRequest, SearchUrisResponse, SearchHashesRequest, SearchHashesResponse, ThreatEntryAdditions, ThreatEntryRemovals, RawIndices, RawHashes, RiceDeltaEncoding, )
+from .webrisk import (
+    ComputeThreatListDiffRequest,
+    ComputeThreatListDiffResponse,
+    SearchUrisRequest,
+    SearchUrisResponse,
+    SearchHashesRequest,
+    SearchHashesResponse,
+    ThreatEntryAdditions,
+    ThreatEntryRemovals,
+    RawIndices,
+    RawHashes,
+    RiceDeltaEncoding,
+)
 
 
 __all__ = (
-    'ComputeThreatListDiffRequest',
-    'ComputeThreatListDiffResponse',
-    'SearchUrisRequest',
-    'SearchUrisResponse',
-    'SearchHashesRequest',
-    'SearchHashesResponse',
-    'ThreatEntryAdditions',
-    'ThreatEntryRemovals',
-    'RawIndices',
-    'RawHashes',
-    'RiceDeltaEncoding',
+    "ComputeThreatListDiffRequest",
+    "ComputeThreatListDiffResponse",
+    "SearchUrisRequest",
+    "SearchUrisResponse",
+    "SearchHashesRequest",
+    "SearchHashesResponse",
+    "ThreatEntryAdditions",
+    "ThreatEntryRemovals",
+    "RawIndices",
+    "RawHashes",
+    "RiceDeltaEncoding",
 )
