@@ -283,23 +283,29 @@ class WebRiskServiceClient(metaclass=WebRiskServiceClientMeta):
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([threat_type, version_token, constraints]):
+        has_flattened_params = any([threat_type, version_token, constraints])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = webrisk.ComputeThreatListDiffRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a webrisk.ComputeThreatListDiffRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, webrisk.ComputeThreatListDiffRequest):
+            request = webrisk.ComputeThreatListDiffRequest(request)
 
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
+            # If we have keyword arguments corresponding to fields on the
+            # request, apply these.
 
-        if threat_type is not None:
-            request.threat_type = threat_type
-        if version_token is not None:
-            request.version_token = version_token
-        if constraints is not None:
-            request.constraints = constraints
+            if threat_type is not None:
+                request.threat_type = threat_type
+            if version_token is not None:
+                request.version_token = version_token
+            if constraints is not None:
+                request.constraints = constraints
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
@@ -359,21 +365,27 @@ class WebRiskServiceClient(metaclass=WebRiskServiceClientMeta):
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([uri, threat_types]):
+        has_flattened_params = any([uri, threat_types])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = webrisk.SearchUrisRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a webrisk.SearchUrisRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, webrisk.SearchUrisRequest):
+            request = webrisk.SearchUrisRequest(request)
 
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
+            # If we have keyword arguments corresponding to fields on the
+            # request, apply these.
 
-        if uri is not None:
-            request.uri = uri
-        if threat_types is not None:
-            request.threat_types = threat_types
+            if uri is not None:
+                request.uri = uri
+            if threat_types is not None:
+                request.threat_types = threat_types
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
@@ -435,21 +447,27 @@ class WebRiskServiceClient(metaclass=WebRiskServiceClientMeta):
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([hash_prefix, threat_types]):
+        has_flattened_params = any([hash_prefix, threat_types])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = webrisk.SearchHashesRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a webrisk.SearchHashesRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, webrisk.SearchHashesRequest):
+            request = webrisk.SearchHashesRequest(request)
 
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
+            # If we have keyword arguments corresponding to fields on the
+            # request, apply these.
 
-        if hash_prefix is not None:
-            request.hash_prefix = hash_prefix
-        if threat_types is not None:
-            request.threat_types = threat_types
+            if hash_prefix is not None:
+                request.hash_prefix = hash_prefix
+            if threat_types is not None:
+                request.threat_types = threat_types
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
@@ -514,21 +532,27 @@ class WebRiskServiceClient(metaclass=WebRiskServiceClientMeta):
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([parent, submission]):
+        has_flattened_params = any([parent, submission])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = webrisk.CreateSubmissionRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a webrisk.CreateSubmissionRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, webrisk.CreateSubmissionRequest):
+            request = webrisk.CreateSubmissionRequest(request)
 
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
+            # If we have keyword arguments corresponding to fields on the
+            # request, apply these.
 
-        if parent is not None:
-            request.parent = parent
-        if submission is not None:
-            request.submission = submission
+            if parent is not None:
+                request.parent = parent
+            if submission is not None:
+                request.submission = submission
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
