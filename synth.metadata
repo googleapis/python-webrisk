@@ -3,8 +3,8 @@
     {
       "git": {
         "name": ".",
-        "remote": "git@github.com:googleapis/python-webrisk.git",
-        "sha": "da0eeec144adf5ba1b41aef2aea856cdf07ea5cd"
+        "remote": "https://github.com/googleapis/python-webrisk.git",
+        "sha": "557222d263246e918f53c7b4078ad6348161c0cf"
       }
     },
     {
