@@ -17,9 +17,9 @@
 
 from typing import Callable, Dict, Optional, Sequence, Tuple
 
-from google.api_core import grpc_helpers  # type: ignore
-from google import auth  # type: ignore
-from google.auth import credentials  # type: ignore
+from google.api_core import grpc_helpers   # type: ignore
+from google import auth                    # type: ignore
+from google.auth import credentials        # type: ignore
 from google.auth.transport.grpc import SslCredentials  # type: ignore
 
 
@@ -43,20 +43,16 @@ class WebRiskServiceGrpcTransport(WebRiskServiceTransport):
     It sends protocol buffers over the wire using gRPC (which is built on
     top of HTTP/2); the ``grpcio`` package must be installed.
     """
-
     _stubs: Dict[str, Callable]
 
-    def __init__(
-        self,
-        *,
-        host: str = "webrisk.googleapis.com",
-        credentials: credentials.Credentials = None,
-        credentials_file: str = None,
-        scopes: Sequence[str] = None,
-        channel: grpc.Channel = None,
-        api_mtls_endpoint: str = None,
-        client_cert_source: Callable[[], Tuple[bytes, bytes]] = None
-    ) -> None:
+    def __init__(self, *,
+            host: str = 'webrisk.googleapis.com',
+            credentials: credentials.Credentials = None,
+            credentials_file: str = None,
+            scopes: Sequence[str] = None,
+            channel: grpc.Channel = None,
+            api_mtls_endpoint: str = None,
+            client_cert_source: Callable[[], Tuple[bytes, bytes]] = None) -> None:
         """Instantiate the transport.
 
         Args:
@@ -97,11 +93,7 @@ class WebRiskServiceGrpcTransport(WebRiskServiceTransport):
             # If a channel was explicitly provided, set it.
             self._grpc_channel = channel
         elif api_mtls_endpoint:
-            host = (
-                api_mtls_endpoint
-                if ":" in api_mtls_endpoint
-                else api_mtls_endpoint + ":443"
-            )
+            host = api_mtls_endpoint if ":" in api_mtls_endpoint else api_mtls_endpoint + ":443"
 
             if credentials is None:
                 credentials, _ = auth.default(scopes=self.AUTH_SCOPES)
@@ -130,20 +122,18 @@ class WebRiskServiceGrpcTransport(WebRiskServiceTransport):
             host=host,
             credentials=credentials,
             credentials_file=credentials_file,
-            scopes=scopes or self.AUTH_SCOPES,
+            scopes=scopes or self.AUTH_SCOPES
         )
 
         self._stubs = {}  # type: Dict[str, Callable]
 
     @classmethod
-    def create_channel(
-        cls,
-        host: str = "webrisk.googleapis.com",
-        credentials: credentials.Credentials = None,
-        credentials_file: str = None,
-        scopes: Optional[Sequence[str]] = None,
-        **kwargs
-    ) -> grpc.Channel:
+    def create_channel(cls,
+                       host: str = 'webrisk.googleapis.com',
+                       credentials: credentials.Credentials = None,
+                       credentials_file: str = None,
+                       scopes: Optional[Sequence[str]] = None,
+                       **kwargs) -> grpc.Channel:
         """Create and return a gRPC channel object.
         Args:
             address (Optionsl[str]): The host for the channel to use.
@@ -185,20 +175,19 @@ class WebRiskServiceGrpcTransport(WebRiskServiceTransport):
         """
         # Sanity check: Only create a new channel if we do not already
         # have one.
-        if not hasattr(self, "_grpc_channel"):
+        if not hasattr(self, '_grpc_channel'):
             self._grpc_channel = self.create_channel(
-                self._host, credentials=self._credentials,
+                self._host,
+                credentials=self._credentials,
             )
 
         # Return the channel from cache.
         return self._grpc_channel
 
     @property
-    def compute_threat_list_diff(
-        self,
-    ) -> Callable[
-        [webrisk.ComputeThreatListDiffRequest], webrisk.ComputeThreatListDiffResponse
-    ]:
+    def compute_threat_list_diff(self) -> Callable[
+            [webrisk.ComputeThreatListDiffRequest],
+            webrisk.ComputeThreatListDiffResponse]:
         r"""Return a callable for the compute threat list diff method over gRPC.
 
         Gets the most recent threat list diffs. These diffs
@@ -220,18 +209,18 @@ class WebRiskServiceGrpcTransport(WebRiskServiceTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if "compute_threat_list_diff" not in self._stubs:
-            self._stubs["compute_threat_list_diff"] = self.grpc_channel.unary_unary(
-                "/google.cloud.webrisk.v1.WebRiskService/ComputeThreatListDiff",
+        if 'compute_threat_list_diff' not in self._stubs:
+            self._stubs['compute_threat_list_diff'] = self.grpc_channel.unary_unary(
+                '/google.cloud.webrisk.v1.WebRiskService/ComputeThreatListDiff',
                 request_serializer=webrisk.ComputeThreatListDiffRequest.serialize,
                 response_deserializer=webrisk.ComputeThreatListDiffResponse.deserialize,
             )
-        return self._stubs["compute_threat_list_diff"]
+        return self._stubs['compute_threat_list_diff']
 
     @property
-    def search_uris(
-        self,
-    ) -> Callable[[webrisk.SearchUrisRequest], webrisk.SearchUrisResponse]:
+    def search_uris(self) -> Callable[
+            [webrisk.SearchUrisRequest],
+            webrisk.SearchUrisResponse]:
         r"""Return a callable for the search uris method over gRPC.
 
         This method is used to check whether a URI is on a
@@ -251,18 +240,18 @@ class WebRiskServiceGrpcTransport(WebRiskServiceTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if "search_uris" not in self._stubs:
-            self._stubs["search_uris"] = self.grpc_channel.unary_unary(
-                "/google.cloud.webrisk.v1.WebRiskService/SearchUris",
+        if 'search_uris' not in self._stubs:
+            self._stubs['search_uris'] = self.grpc_channel.unary_unary(
+                '/google.cloud.webrisk.v1.WebRiskService/SearchUris',
                 request_serializer=webrisk.SearchUrisRequest.serialize,
                 response_deserializer=webrisk.SearchUrisResponse.deserialize,
             )
-        return self._stubs["search_uris"]
+        return self._stubs['search_uris']
 
     @property
-    def search_hashes(
-        self,
-    ) -> Callable[[webrisk.SearchHashesRequest], webrisk.SearchHashesResponse]:
+    def search_hashes(self) -> Callable[
+            [webrisk.SearchHashesRequest],
+            webrisk.SearchHashesResponse]:
         r"""Return a callable for the search hashes method over gRPC.
 
         Gets the full hashes that match the requested hash
@@ -282,18 +271,18 @@ class WebRiskServiceGrpcTransport(WebRiskServiceTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if "search_hashes" not in self._stubs:
-            self._stubs["search_hashes"] = self.grpc_channel.unary_unary(
-                "/google.cloud.webrisk.v1.WebRiskService/SearchHashes",
+        if 'search_hashes' not in self._stubs:
+            self._stubs['search_hashes'] = self.grpc_channel.unary_unary(
+                '/google.cloud.webrisk.v1.WebRiskService/SearchHashes',
                 request_serializer=webrisk.SearchHashesRequest.serialize,
                 response_deserializer=webrisk.SearchHashesResponse.deserialize,
             )
-        return self._stubs["search_hashes"]
+        return self._stubs['search_hashes']
 
     @property
-    def create_submission(
-        self,
-    ) -> Callable[[webrisk.CreateSubmissionRequest], webrisk.Submission]:
+    def create_submission(self) -> Callable[
+            [webrisk.CreateSubmissionRequest],
+            webrisk.Submission]:
         r"""Return a callable for the create submission method over gRPC.
 
         Creates a Submission of a URI suspected of containing phishing
@@ -315,13 +304,15 @@ class WebRiskServiceGrpcTransport(WebRiskServiceTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if "create_submission" not in self._stubs:
-            self._stubs["create_submission"] = self.grpc_channel.unary_unary(
-                "/google.cloud.webrisk.v1.WebRiskService/CreateSubmission",
+        if 'create_submission' not in self._stubs:
+            self._stubs['create_submission'] = self.grpc_channel.unary_unary(
+                '/google.cloud.webrisk.v1.WebRiskService/CreateSubmission',
                 request_serializer=webrisk.CreateSubmissionRequest.serialize,
                 response_deserializer=webrisk.Submission.deserialize,
             )
-        return self._stubs["create_submission"]
+        return self._stubs['create_submission']
 
 
-__all__ = ("WebRiskServiceGrpcTransport",)
+__all__ = (
+    'WebRiskServiceGrpcTransport',
+)
