@@ -33,7 +33,7 @@ from google.oauth2 import service_account  # type: ignore
 from google.cloud.webrisk_v1beta1.types import webrisk
 from google.protobuf import timestamp_pb2 as timestamp  # type: ignore
 
-from .transports.base import WebRiskServiceV1Beta1Transport
+from .transports.base import WebRiskServiceV1Beta1Transport, DEFAULT_CLIENT_INFO
 from .transports.grpc import WebRiskServiceV1Beta1GrpcTransport
 from .transports.grpc_asyncio import WebRiskServiceV1Beta1GrpcAsyncIOTransport
 
@@ -138,6 +138,7 @@ class WebRiskServiceV1Beta1Client(metaclass=WebRiskServiceV1Beta1ClientMeta):
         credentials: credentials.Credentials = None,
         transport: Union[str, WebRiskServiceV1Beta1Transport] = None,
         client_options: ClientOptions = None,
+        client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
     ) -> None:
         """Instantiate the web risk service v1 beta1 client.
 
@@ -163,6 +164,11 @@ class WebRiskServiceV1Beta1Client(metaclass=WebRiskServiceV1Beta1ClientMeta):
                 (2) The ``client_cert_source`` property is used to provide client
                 SSL credentials for mutual TLS transport. If not provided, the
                 default SSL credentials will be used if present.
+            client_info (google.api_core.gapic_v1.client_info.ClientInfo):	
+                The client info used to send a user-agent string along with	
+                API requests. If ``None``, then default info will be used.	
+                Generally, you only need to set this if you're developing	
+                your own client library.
 
         Raises:
             google.auth.exceptions.MutualTLSChannelError: If mutual TLS transport
@@ -220,6 +226,7 @@ class WebRiskServiceV1Beta1Client(metaclass=WebRiskServiceV1Beta1ClientMeta):
                 api_mtls_endpoint=client_options.api_endpoint,
                 client_cert_source=client_options.client_cert_source,
                 quota_project_id=client_options.quota_project_id,
+                client_info=client_info,
             )
 
     def compute_threat_list_diff(
@@ -463,11 +470,11 @@ class WebRiskServiceV1Beta1Client(metaclass=WebRiskServiceV1Beta1ClientMeta):
 
 
 try:
-    _client_info = gapic_v1.client_info.ClientInfo(
+    DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo(
         gapic_version=pkg_resources.get_distribution("google-cloud-webrisk",).version,
     )
 except pkg_resources.DistributionNotFound:
-    _client_info = gapic_v1.client_info.ClientInfo()
+    DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo()
 
 
 __all__ = ("WebRiskServiceV1Beta1Client",)

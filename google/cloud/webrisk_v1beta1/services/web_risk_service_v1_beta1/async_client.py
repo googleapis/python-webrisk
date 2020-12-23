@@ -31,7 +31,7 @@ from google.oauth2 import service_account  # type: ignore
 from google.cloud.webrisk_v1beta1.types import webrisk
 from google.protobuf import timestamp_pb2 as timestamp  # type: ignore
 
-from .transports.base import WebRiskServiceV1Beta1Transport
+from .transports.base import WebRiskServiceV1Beta1Transport, DEFAULT_CLIENT_INFO
 from .transports.grpc_asyncio import WebRiskServiceV1Beta1GrpcAsyncIOTransport
 from .client import WebRiskServiceV1Beta1Client
 
@@ -60,6 +60,7 @@ class WebRiskServiceV1Beta1AsyncClient:
         credentials: credentials.Credentials = None,
         transport: Union[str, WebRiskServiceV1Beta1Transport] = "grpc_asyncio",
         client_options: ClientOptions = None,
+        client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
     ) -> None:
         """Instantiate the web risk service v1 beta1 client.
 
@@ -92,7 +93,10 @@ class WebRiskServiceV1Beta1AsyncClient:
         """
 
         self._client = WebRiskServiceV1Beta1Client(
-            credentials=credentials, transport=transport, client_options=client_options,
+            credentials=credentials,
+            transport=transport,
+            client_options=client_options,
+            client_info=client_info,
         )
 
     async def compute_threat_list_diff(
@@ -171,11 +175,11 @@ class WebRiskServiceV1Beta1AsyncClient:
                 maximum=60.0,
                 multiplier=1.3,
                 predicate=retries.if_exception_type(
-                    exceptions.DeadlineExceeded, exceptions.ServiceUnavailable,
+                    exceptions.ServiceUnavailable, exceptions.DeadlineExceeded,
                 ),
             ),
             default_timeout=600.0,
-            client_info=_client_info,
+            client_info=DEFAULT_CLIENT_INFO,
         )
 
         # Send the request.
@@ -252,11 +256,11 @@ class WebRiskServiceV1Beta1AsyncClient:
                 maximum=60.0,
                 multiplier=1.3,
                 predicate=retries.if_exception_type(
-                    exceptions.DeadlineExceeded, exceptions.ServiceUnavailable,
+                    exceptions.ServiceUnavailable, exceptions.DeadlineExceeded,
                 ),
             ),
             default_timeout=600.0,
-            client_info=_client_info,
+            client_info=DEFAULT_CLIENT_INFO,
         )
 
         # Send the request.
@@ -339,11 +343,11 @@ class WebRiskServiceV1Beta1AsyncClient:
                 maximum=60.0,
                 multiplier=1.3,
                 predicate=retries.if_exception_type(
-                    exceptions.DeadlineExceeded, exceptions.ServiceUnavailable,
+                    exceptions.ServiceUnavailable, exceptions.DeadlineExceeded,
                 ),
             ),
             default_timeout=600.0,
-            client_info=_client_info,
+            client_info=DEFAULT_CLIENT_INFO,
         )
 
         # Send the request.
@@ -354,11 +358,11 @@ class WebRiskServiceV1Beta1AsyncClient:
 
 
 try:
-    _client_info = gapic_v1.client_info.ClientInfo(
+    DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo(
         gapic_version=pkg_resources.get_distribution("google-cloud-webrisk",).version,
     )
 except pkg_resources.DistributionNotFound:
-    _client_info = gapic_v1.client_info.ClientInfo()
+    DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo()
 
 
 __all__ = ("WebRiskServiceV1Beta1AsyncClient",)

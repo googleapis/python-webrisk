@@ -31,7 +31,7 @@ from google.oauth2 import service_account  # type: ignore
 from google.cloud.webrisk_v1.types import webrisk
 from google.protobuf import timestamp_pb2 as timestamp  # type: ignore
 
-from .transports.base import WebRiskServiceTransport
+from .transports.base import WebRiskServiceTransport, DEFAULT_CLIENT_INFO
 from .transports.grpc_asyncio import WebRiskServiceGrpcAsyncIOTransport
 from .client import WebRiskServiceClient
 
@@ -59,6 +59,7 @@ class WebRiskServiceAsyncClient:
         credentials: credentials.Credentials = None,
         transport: Union[str, WebRiskServiceTransport] = "grpc_asyncio",
         client_options: ClientOptions = None,
+        client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
     ) -> None:
         """Instantiate the web risk service client.
 
@@ -91,7 +92,10 @@ class WebRiskServiceAsyncClient:
         """
 
         self._client = WebRiskServiceClient(
-            credentials=credentials, transport=transport, client_options=client_options,
+            credentials=credentials,
+            transport=transport,
+            client_options=client_options,
+            client_info=client_info,
         )
 
     async def compute_threat_list_diff(
@@ -188,7 +192,7 @@ class WebRiskServiceAsyncClient:
                 ),
             ),
             default_timeout=600.0,
-            client_info=_client_info,
+            client_info=DEFAULT_CLIENT_INFO,
         )
 
         # Send the request.
@@ -274,7 +278,7 @@ class WebRiskServiceAsyncClient:
                 ),
             ),
             default_timeout=600.0,
-            client_info=_client_info,
+            client_info=DEFAULT_CLIENT_INFO,
         )
 
         # Send the request.
@@ -362,7 +366,7 @@ class WebRiskServiceAsyncClient:
                 ),
             ),
             default_timeout=600.0,
-            client_info=_client_info,
+            client_info=DEFAULT_CLIENT_INFO,
         )
 
         # Send the request.
@@ -445,7 +449,7 @@ class WebRiskServiceAsyncClient:
         rpc = gapic_v1.method_async.wrap_method(
             self._client._transport.create_submission,
             default_timeout=60.0,
-            client_info=_client_info,
+            client_info=DEFAULT_CLIENT_INFO,
         )
 
         # Certain fields should be provided within the metadata header;
@@ -462,11 +466,11 @@ class WebRiskServiceAsyncClient:
 
 
 try:
-    _client_info = gapic_v1.client_info.ClientInfo(
+    DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo(
         gapic_version=pkg_resources.get_distribution("google-cloud-webrisk",).version,
     )
 except pkg_resources.DistributionNotFound:
-    _client_info = gapic_v1.client_info.ClientInfo()
+    DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo()
 
 
 __all__ = ("WebRiskServiceAsyncClient",)
