@@ -22,6 +22,7 @@ import pkg_resources
 from google import auth
 from google.api_core import exceptions  # type: ignore
 from google.api_core import gapic_v1  # type: ignore
+from google.api_core import retry as retries  # type: ignore
 from google.auth import credentials  # type: ignore
 
 from google.cloud.webrisk_v1.types import webrisk
@@ -104,7 +105,7 @@ class WebRiskServiceTransport(abc.ABC):
                     maximum=60.0,
                     multiplier=1.3,
                     predicate=retries.if_exception_type(
-                        exceptions.ServiceUnavailable, exceptions.DeadlineExceeded,
+                        exceptions.DeadlineExceeded, exceptions.ServiceUnavailable,
                     ),
                 ),
                 default_timeout=600.0,
@@ -117,7 +118,7 @@ class WebRiskServiceTransport(abc.ABC):
                     maximum=60.0,
                     multiplier=1.3,
                     predicate=retries.if_exception_type(
-                        exceptions.ServiceUnavailable, exceptions.DeadlineExceeded,
+                        exceptions.DeadlineExceeded, exceptions.ServiceUnavailable,
                     ),
                 ),
                 default_timeout=600.0,
@@ -130,7 +131,7 @@ class WebRiskServiceTransport(abc.ABC):
                     maximum=60.0,
                     multiplier=1.3,
                     predicate=retries.if_exception_type(
-                        exceptions.ServiceUnavailable, exceptions.DeadlineExceeded,
+                        exceptions.DeadlineExceeded, exceptions.ServiceUnavailable,
                     ),
                 ),
                 default_timeout=600.0,

@@ -351,14 +351,16 @@ def test_web_risk_service_client_client_options_from_dict():
         )
 
 
-def test_compute_threat_list_diff(transport: str = "grpc"):
+def test_compute_threat_list_diff(
+    transport: str = "grpc", request_type=webrisk.ComputeThreatListDiffRequest
+):
     client = WebRiskServiceClient(
         credentials=credentials.AnonymousCredentials(), transport=transport,
     )
 
     # Everything is optional in proto3 as far as the runtime is concerned,
     # and we are mocking out the actual API, so just send an empty request.
-    request = webrisk.ComputeThreatListDiffRequest()
+    request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
@@ -376,7 +378,7 @@ def test_compute_threat_list_diff(transport: str = "grpc"):
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
 
-        assert args[0] == request
+        assert args[0] == webrisk.ComputeThreatListDiffRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, webrisk.ComputeThreatListDiffResponse)
@@ -387,6 +389,10 @@ def test_compute_threat_list_diff(transport: str = "grpc"):
     )
 
     assert response.new_version_token == b"new_version_token_blob"
+
+
+def test_compute_threat_list_diff_from_dict():
+    test_compute_threat_list_diff(request_type=dict)
 
 
 @pytest.mark.asyncio
@@ -535,14 +541,14 @@ async def test_compute_threat_list_diff_flattened_error_async():
         )
 
 
-def test_search_uris(transport: str = "grpc"):
+def test_search_uris(transport: str = "grpc", request_type=webrisk.SearchUrisRequest):
     client = WebRiskServiceClient(
         credentials=credentials.AnonymousCredentials(), transport=transport,
     )
 
     # Everything is optional in proto3 as far as the runtime is concerned,
     # and we are mocking out the actual API, so just send an empty request.
-    request = webrisk.SearchUrisRequest()
+    request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(type(client._transport.search_uris), "__call__") as call:
@@ -555,10 +561,14 @@ def test_search_uris(transport: str = "grpc"):
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
 
-        assert args[0] == request
+        assert args[0] == webrisk.SearchUrisRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, webrisk.SearchUrisResponse)
+
+
+def test_search_uris_from_dict():
+    test_search_uris(request_type=dict)
 
 
 @pytest.mark.asyncio
@@ -673,14 +683,16 @@ async def test_search_uris_flattened_error_async():
         )
 
 
-def test_search_hashes(transport: str = "grpc"):
+def test_search_hashes(
+    transport: str = "grpc", request_type=webrisk.SearchHashesRequest
+):
     client = WebRiskServiceClient(
         credentials=credentials.AnonymousCredentials(), transport=transport,
     )
 
     # Everything is optional in proto3 as far as the runtime is concerned,
     # and we are mocking out the actual API, so just send an empty request.
-    request = webrisk.SearchHashesRequest()
+    request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(type(client._transport.search_hashes), "__call__") as call:
@@ -693,10 +705,14 @@ def test_search_hashes(transport: str = "grpc"):
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
 
-        assert args[0] == request
+        assert args[0] == webrisk.SearchHashesRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, webrisk.SearchHashesResponse)
+
+
+def test_search_hashes_from_dict():
+    test_search_hashes(request_type=dict)
 
 
 @pytest.mark.asyncio
@@ -811,14 +827,16 @@ async def test_search_hashes_flattened_error_async():
         )
 
 
-def test_create_submission(transport: str = "grpc"):
+def test_create_submission(
+    transport: str = "grpc", request_type=webrisk.CreateSubmissionRequest
+):
     client = WebRiskServiceClient(
         credentials=credentials.AnonymousCredentials(), transport=transport,
     )
 
     # Everything is optional in proto3 as far as the runtime is concerned,
     # and we are mocking out the actual API, so just send an empty request.
-    request = webrisk.CreateSubmissionRequest()
+    request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
@@ -833,12 +851,16 @@ def test_create_submission(transport: str = "grpc"):
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
 
-        assert args[0] == request
+        assert args[0] == webrisk.CreateSubmissionRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, webrisk.Submission)
 
     assert response.uri == "uri_value"
+
+
+def test_create_submission_from_dict():
+    test_create_submission(request_type=dict)
 
 
 @pytest.mark.asyncio
