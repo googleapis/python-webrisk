@@ -429,7 +429,7 @@ class CreateSubmissionRequest(proto.Message):
 
     parent = proto.Field(proto.STRING, number=1)
 
-    submission = proto.Field(proto.MESSAGE, number=2, message=Submission,)
+    submission = proto.Field(proto.MESSAGE, number=2, message="Submission",)
 
 
 __all__ = tuple(sorted(__protobuf__.manifest))

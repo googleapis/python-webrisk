@@ -46,8 +46,46 @@ class WebRiskServiceAsyncClient:
     DEFAULT_ENDPOINT = WebRiskServiceClient.DEFAULT_ENDPOINT
     DEFAULT_MTLS_ENDPOINT = WebRiskServiceClient.DEFAULT_MTLS_ENDPOINT
 
+    common_billing_account_path = staticmethod(
+        WebRiskServiceClient.common_billing_account_path
+    )
+    parse_common_billing_account_path = staticmethod(
+        WebRiskServiceClient.parse_common_billing_account_path
+    )
+
+    common_folder_path = staticmethod(WebRiskServiceClient.common_folder_path)
+    parse_common_folder_path = staticmethod(
+        WebRiskServiceClient.parse_common_folder_path
+    )
+
+    common_organization_path = staticmethod(
+        WebRiskServiceClient.common_organization_path
+    )
+    parse_common_organization_path = staticmethod(
+        WebRiskServiceClient.parse_common_organization_path
+    )
+
+    common_project_path = staticmethod(WebRiskServiceClient.common_project_path)
+    parse_common_project_path = staticmethod(
+        WebRiskServiceClient.parse_common_project_path
+    )
+
+    common_location_path = staticmethod(WebRiskServiceClient.common_location_path)
+    parse_common_location_path = staticmethod(
+        WebRiskServiceClient.parse_common_location_path
+    )
+
     from_service_account_file = WebRiskServiceClient.from_service_account_file
     from_service_account_json = from_service_account_file
+
+    @property
+    def transport(self) -> WebRiskServiceTransport:
+        """Return the transport used by the client instance.
+
+        Returns:
+            WebRiskServiceTransport: The transport used by the client instance.
+        """
+        return self._client.transport
 
     get_transport_class = functools.partial(
         type(WebRiskServiceClient).get_transport_class, type(WebRiskServiceClient)
@@ -164,7 +202,8 @@ class WebRiskServiceAsyncClient:
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([threat_type, version_token, constraints]):
+        has_flattened_params = any([threat_type, version_token, constraints])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
@@ -191,7 +230,7 @@ class WebRiskServiceAsyncClient:
                 maximum=60.0,
                 multiplier=1.3,
                 predicate=retries.if_exception_type(
-                    exceptions.ServiceUnavailable, exceptions.DeadlineExceeded,
+                    exceptions.DeadlineExceeded, exceptions.ServiceUnavailable,
                 ),
             ),
             default_timeout=600.0,
@@ -252,7 +291,8 @@ class WebRiskServiceAsyncClient:
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([uri, threat_types]):
+        has_flattened_params = any([uri, threat_types])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
@@ -265,8 +305,9 @@ class WebRiskServiceAsyncClient:
 
         if uri is not None:
             request.uri = uri
-        if threat_types is not None:
-            request.threat_types = threat_types
+
+        if threat_types:
+            request.threat_types.extend(threat_types)
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
@@ -277,7 +318,7 @@ class WebRiskServiceAsyncClient:
                 maximum=60.0,
                 multiplier=1.3,
                 predicate=retries.if_exception_type(
-                    exceptions.ServiceUnavailable, exceptions.DeadlineExceeded,
+                    exceptions.DeadlineExceeded, exceptions.ServiceUnavailable,
                 ),
             ),
             default_timeout=600.0,
@@ -340,7 +381,8 @@ class WebRiskServiceAsyncClient:
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([hash_prefix, threat_types]):
+        has_flattened_params = any([hash_prefix, threat_types])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
@@ -353,8 +395,9 @@ class WebRiskServiceAsyncClient:
 
         if hash_prefix is not None:
             request.hash_prefix = hash_prefix
-        if threat_types is not None:
-            request.threat_types = threat_types
+
+        if threat_types:
+            request.threat_types.extend(threat_types)
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
@@ -365,7 +408,7 @@ class WebRiskServiceAsyncClient:
                 maximum=60.0,
                 multiplier=1.3,
                 predicate=retries.if_exception_type(
-                    exceptions.ServiceUnavailable, exceptions.DeadlineExceeded,
+                    exceptions.DeadlineExceeded, exceptions.ServiceUnavailable,
                 ),
             ),
             default_timeout=600.0,
@@ -431,7 +474,8 @@ class WebRiskServiceAsyncClient:
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([parent, submission]):
+        has_flattened_params = any([parent, submission])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."

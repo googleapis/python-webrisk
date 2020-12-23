@@ -94,12 +94,12 @@ def test_web_risk_service_client_from_service_account_file(client_class):
     ) as factory:
         factory.return_value = creds
         client = client_class.from_service_account_file("dummy/file/path.json")
-        assert client._transport._credentials == creds
+        assert client.transport._credentials == creds
 
         client = client_class.from_service_account_json("dummy/file/path.json")
-        assert client._transport._credentials == creds
+        assert client.transport._credentials == creds
 
-        assert client._transport._host == "webrisk.googleapis.com:443"
+        assert client.transport._host == "webrisk.googleapis.com:443"
 
 
 def test_web_risk_service_client_get_transport_class():
@@ -450,7 +450,7 @@ def test_compute_threat_list_diff(
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client._transport.compute_threat_list_diff), "__call__"
+        type(client.transport.compute_threat_list_diff), "__call__"
     ) as call:
         # Designate an appropriate return value for the call.
         call.return_value = webrisk.ComputeThreatListDiffResponse(
@@ -467,6 +467,7 @@ def test_compute_threat_list_diff(
         assert args[0] == webrisk.ComputeThreatListDiffRequest()
 
     # Establish that the response is the type that we expect.
+
     assert isinstance(response, webrisk.ComputeThreatListDiffResponse)
 
     assert (
@@ -482,18 +483,20 @@ def test_compute_threat_list_diff_from_dict():
 
 
 @pytest.mark.asyncio
-async def test_compute_threat_list_diff_async(transport: str = "grpc_asyncio"):
+async def test_compute_threat_list_diff_async(
+    transport: str = "grpc_asyncio", request_type=webrisk.ComputeThreatListDiffRequest
+):
     client = WebRiskServiceAsyncClient(
         credentials=credentials.AnonymousCredentials(), transport=transport,
     )
 
     # Everything is optional in proto3 as far as the runtime is concerned,
     # and we are mocking out the actual API, so just send an empty request.
-    request = webrisk.ComputeThreatListDiffRequest()
+    request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client._client._transport.compute_threat_list_diff), "__call__"
+        type(client.transport.compute_threat_list_diff), "__call__"
     ) as call:
         # Designate an appropriate return value for the call.
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
@@ -509,7 +512,7 @@ async def test_compute_threat_list_diff_async(transport: str = "grpc_asyncio"):
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
 
-        assert args[0] == request
+        assert args[0] == webrisk.ComputeThreatListDiffRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, webrisk.ComputeThreatListDiffResponse)
@@ -522,12 +525,17 @@ async def test_compute_threat_list_diff_async(transport: str = "grpc_asyncio"):
     assert response.new_version_token == b"new_version_token_blob"
 
 
+@pytest.mark.asyncio
+async def test_compute_threat_list_diff_async_from_dict():
+    await test_compute_threat_list_diff_async(request_type=dict)
+
+
 def test_compute_threat_list_diff_flattened():
     client = WebRiskServiceClient(credentials=credentials.AnonymousCredentials(),)
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client._transport.compute_threat_list_diff), "__call__"
+        type(client.transport.compute_threat_list_diff), "__call__"
     ) as call:
         # Designate an appropriate return value for the call.
         call.return_value = webrisk.ComputeThreatListDiffResponse()
@@ -578,7 +586,7 @@ async def test_compute_threat_list_diff_flattened_async():
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client._client._transport.compute_threat_list_diff), "__call__"
+        type(client.transport.compute_threat_list_diff), "__call__"
     ) as call:
         # Designate an appropriate return value for the call.
         call.return_value = webrisk.ComputeThreatListDiffResponse()
@@ -637,7 +645,7 @@ def test_search_uris(transport: str = "grpc", request_type=webrisk.SearchUrisReq
     request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client._transport.search_uris), "__call__") as call:
+    with mock.patch.object(type(client.transport.search_uris), "__call__") as call:
         # Designate an appropriate return value for the call.
         call.return_value = webrisk.SearchUrisResponse()
 
@@ -650,6 +658,7 @@ def test_search_uris(transport: str = "grpc", request_type=webrisk.SearchUrisReq
         assert args[0] == webrisk.SearchUrisRequest()
 
     # Establish that the response is the type that we expect.
+
     assert isinstance(response, webrisk.SearchUrisResponse)
 
 
@@ -658,19 +667,19 @@ def test_search_uris_from_dict():
 
 
 @pytest.mark.asyncio
-async def test_search_uris_async(transport: str = "grpc_asyncio"):
+async def test_search_uris_async(
+    transport: str = "grpc_asyncio", request_type=webrisk.SearchUrisRequest
+):
     client = WebRiskServiceAsyncClient(
         credentials=credentials.AnonymousCredentials(), transport=transport,
     )
 
     # Everything is optional in proto3 as far as the runtime is concerned,
     # and we are mocking out the actual API, so just send an empty request.
-    request = webrisk.SearchUrisRequest()
+    request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(
-        type(client._client._transport.search_uris), "__call__"
-    ) as call:
+    with mock.patch.object(type(client.transport.search_uris), "__call__") as call:
         # Designate an appropriate return value for the call.
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
             webrisk.SearchUrisResponse()
@@ -682,17 +691,22 @@ async def test_search_uris_async(transport: str = "grpc_asyncio"):
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
 
-        assert args[0] == request
+        assert args[0] == webrisk.SearchUrisRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, webrisk.SearchUrisResponse)
+
+
+@pytest.mark.asyncio
+async def test_search_uris_async_from_dict():
+    await test_search_uris_async(request_type=dict)
 
 
 def test_search_uris_flattened():
     client = WebRiskServiceClient(credentials=credentials.AnonymousCredentials(),)
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client._transport.search_uris), "__call__") as call:
+    with mock.patch.object(type(client.transport.search_uris), "__call__") as call:
         # Designate an appropriate return value for the call.
         call.return_value = webrisk.SearchUrisResponse()
 
@@ -730,9 +744,7 @@ async def test_search_uris_flattened_async():
     client = WebRiskServiceAsyncClient(credentials=credentials.AnonymousCredentials(),)
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(
-        type(client._client._transport.search_uris), "__call__"
-    ) as call:
+    with mock.patch.object(type(client.transport.search_uris), "__call__") as call:
         # Designate an appropriate return value for the call.
         call.return_value = webrisk.SearchUrisResponse()
 
@@ -781,7 +793,7 @@ def test_search_hashes(
     request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client._transport.search_hashes), "__call__") as call:
+    with mock.patch.object(type(client.transport.search_hashes), "__call__") as call:
         # Designate an appropriate return value for the call.
         call.return_value = webrisk.SearchHashesResponse()
 
@@ -794,6 +806,7 @@ def test_search_hashes(
         assert args[0] == webrisk.SearchHashesRequest()
 
     # Establish that the response is the type that we expect.
+
     assert isinstance(response, webrisk.SearchHashesResponse)
 
 
@@ -802,19 +815,19 @@ def test_search_hashes_from_dict():
 
 
 @pytest.mark.asyncio
-async def test_search_hashes_async(transport: str = "grpc_asyncio"):
+async def test_search_hashes_async(
+    transport: str = "grpc_asyncio", request_type=webrisk.SearchHashesRequest
+):
     client = WebRiskServiceAsyncClient(
         credentials=credentials.AnonymousCredentials(), transport=transport,
     )
 
     # Everything is optional in proto3 as far as the runtime is concerned,
     # and we are mocking out the actual API, so just send an empty request.
-    request = webrisk.SearchHashesRequest()
+    request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(
-        type(client._client._transport.search_hashes), "__call__"
-    ) as call:
+    with mock.patch.object(type(client.transport.search_hashes), "__call__") as call:
         # Designate an appropriate return value for the call.
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
             webrisk.SearchHashesResponse()
@@ -826,17 +839,22 @@ async def test_search_hashes_async(transport: str = "grpc_asyncio"):
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
 
-        assert args[0] == request
+        assert args[0] == webrisk.SearchHashesRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, webrisk.SearchHashesResponse)
+
+
+@pytest.mark.asyncio
+async def test_search_hashes_async_from_dict():
+    await test_search_hashes_async(request_type=dict)
 
 
 def test_search_hashes_flattened():
     client = WebRiskServiceClient(credentials=credentials.AnonymousCredentials(),)
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(type(client._transport.search_hashes), "__call__") as call:
+    with mock.patch.object(type(client.transport.search_hashes), "__call__") as call:
         # Designate an appropriate return value for the call.
         call.return_value = webrisk.SearchHashesResponse()
 
@@ -874,9 +892,7 @@ async def test_search_hashes_flattened_async():
     client = WebRiskServiceAsyncClient(credentials=credentials.AnonymousCredentials(),)
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(
-        type(client._client._transport.search_hashes), "__call__"
-    ) as call:
+    with mock.patch.object(type(client.transport.search_hashes), "__call__") as call:
         # Designate an appropriate return value for the call.
         call.return_value = webrisk.SearchHashesResponse()
 
@@ -926,7 +942,7 @@ def test_create_submission(
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client._transport.create_submission), "__call__"
+        type(client.transport.create_submission), "__call__"
     ) as call:
         # Designate an appropriate return value for the call.
         call.return_value = webrisk.Submission(uri="uri_value",)
@@ -940,6 +956,7 @@ def test_create_submission(
         assert args[0] == webrisk.CreateSubmissionRequest()
 
     # Establish that the response is the type that we expect.
+
     assert isinstance(response, webrisk.Submission)
 
     assert response.uri == "uri_value"
@@ -950,18 +967,20 @@ def test_create_submission_from_dict():
 
 
 @pytest.mark.asyncio
-async def test_create_submission_async(transport: str = "grpc_asyncio"):
+async def test_create_submission_async(
+    transport: str = "grpc_asyncio", request_type=webrisk.CreateSubmissionRequest
+):
     client = WebRiskServiceAsyncClient(
         credentials=credentials.AnonymousCredentials(), transport=transport,
     )
 
     # Everything is optional in proto3 as far as the runtime is concerned,
     # and we are mocking out the actual API, so just send an empty request.
-    request = webrisk.CreateSubmissionRequest()
+    request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client._client._transport.create_submission), "__call__"
+        type(client.transport.create_submission), "__call__"
     ) as call:
         # Designate an appropriate return value for the call.
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
@@ -974,12 +993,17 @@ async def test_create_submission_async(transport: str = "grpc_asyncio"):
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
 
-        assert args[0] == request
+        assert args[0] == webrisk.CreateSubmissionRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, webrisk.Submission)
 
     assert response.uri == "uri_value"
+
+
+@pytest.mark.asyncio
+async def test_create_submission_async_from_dict():
+    await test_create_submission_async(request_type=dict)
 
 
 def test_create_submission_field_headers():
@@ -992,7 +1016,7 @@ def test_create_submission_field_headers():
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client._transport.create_submission), "__call__"
+        type(client.transport.create_submission), "__call__"
     ) as call:
         call.return_value = webrisk.Submission()
 
@@ -1019,7 +1043,7 @@ async def test_create_submission_field_headers_async():
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client._client._transport.create_submission), "__call__"
+        type(client.transport.create_submission), "__call__"
     ) as call:
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(webrisk.Submission())
 
@@ -1040,7 +1064,7 @@ def test_create_submission_flattened():
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client._transport.create_submission), "__call__"
+        type(client.transport.create_submission), "__call__"
     ) as call:
         # Designate an appropriate return value for the call.
         call.return_value = webrisk.Submission()
@@ -1080,7 +1104,7 @@ async def test_create_submission_flattened_async():
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-        type(client._client._transport.create_submission), "__call__"
+        type(client.transport.create_submission), "__call__"
     ) as call:
         # Designate an appropriate return value for the call.
         call.return_value = webrisk.Submission()
@@ -1152,7 +1176,7 @@ def test_transport_instance():
         credentials=credentials.AnonymousCredentials(),
     )
     client = WebRiskServiceClient(transport=transport)
-    assert client._transport is transport
+    assert client.transport is transport
 
 
 def test_transport_get_channel():
@@ -1188,7 +1212,7 @@ def test_transport_adc(transport_class):
 def test_transport_grpc_default():
     # A client should use the gRPC transport by default.
     client = WebRiskServiceClient(credentials=credentials.AnonymousCredentials(),)
-    assert isinstance(client._transport, transports.WebRiskServiceGrpcTransport,)
+    assert isinstance(client.transport, transports.WebRiskServiceGrpcTransport,)
 
 
 def test_web_risk_service_base_transport_error():
@@ -1285,7 +1309,7 @@ def test_web_risk_service_host_no_port():
             api_endpoint="webrisk.googleapis.com"
         ),
     )
-    assert client._transport._host == "webrisk.googleapis.com:443"
+    assert client.transport._host == "webrisk.googleapis.com:443"
 
 
 def test_web_risk_service_host_with_port():
@@ -1295,7 +1319,7 @@ def test_web_risk_service_host_with_port():
             api_endpoint="webrisk.googleapis.com:8000"
         ),
     )
-    assert client._transport._host == "webrisk.googleapis.com:8000"
+    assert client.transport._host == "webrisk.googleapis.com:8000"
 
 
 def test_web_risk_service_grpc_transport_channel():
@@ -1307,6 +1331,7 @@ def test_web_risk_service_grpc_transport_channel():
     )
     assert transport.grpc_channel == channel
     assert transport._host == "squid.clam.whelk:443"
+    assert transport._ssl_channel_credentials == None
 
 
 def test_web_risk_service_grpc_asyncio_transport_channel():
@@ -1318,6 +1343,7 @@ def test_web_risk_service_grpc_asyncio_transport_channel():
     )
     assert transport.grpc_channel == channel
     assert transport._host == "squid.clam.whelk:443"
+    assert transport._ssl_channel_credentials == None
 
 
 @pytest.mark.parametrize(
@@ -1365,6 +1391,7 @@ def test_web_risk_service_transport_channel_mtls_with_client_cert_source(
                 quota_project_id=None,
             )
             assert transport.grpc_channel == mock_grpc_channel
+            assert transport._ssl_channel_credentials == mock_ssl_cred
 
 
 @pytest.mark.parametrize(
@@ -1405,6 +1432,107 @@ def test_web_risk_service_transport_channel_mtls_with_adc(transport_class):
                 quota_project_id=None,
             )
             assert transport.grpc_channel == mock_grpc_channel
+
+
+def test_common_billing_account_path():
+    billing_account = "squid"
+
+    expected = "billingAccounts/{billing_account}".format(
+        billing_account=billing_account,
+    )
+    actual = WebRiskServiceClient.common_billing_account_path(billing_account)
+    assert expected == actual
+
+
+def test_parse_common_billing_account_path():
+    expected = {
+        "billing_account": "clam",
+    }
+    path = WebRiskServiceClient.common_billing_account_path(**expected)
+
+    # Check that the path construction is reversible.
+    actual = WebRiskServiceClient.parse_common_billing_account_path(path)
+    assert expected == actual
+
+
+def test_common_folder_path():
+    folder = "whelk"
+
+    expected = "folders/{folder}".format(folder=folder,)
+    actual = WebRiskServiceClient.common_folder_path(folder)
+    assert expected == actual
+
+
+def test_parse_common_folder_path():
+    expected = {
+        "folder": "octopus",
+    }
+    path = WebRiskServiceClient.common_folder_path(**expected)
+
+    # Check that the path construction is reversible.
+    actual = WebRiskServiceClient.parse_common_folder_path(path)
+    assert expected == actual
+
+
+def test_common_organization_path():
+    organization = "oyster"
+
+    expected = "organizations/{organization}".format(organization=organization,)
+    actual = WebRiskServiceClient.common_organization_path(organization)
+    assert expected == actual
+
+
+def test_parse_common_organization_path():
+    expected = {
+        "organization": "nudibranch",
+    }
+    path = WebRiskServiceClient.common_organization_path(**expected)
+
+    # Check that the path construction is reversible.
+    actual = WebRiskServiceClient.parse_common_organization_path(path)
+    assert expected == actual
+
+
+def test_common_project_path():
+    project = "cuttlefish"
+
+    expected = "projects/{project}".format(project=project,)
+    actual = WebRiskServiceClient.common_project_path(project)
+    assert expected == actual
+
+
+def test_parse_common_project_path():
+    expected = {
+        "project": "mussel",
+    }
+    path = WebRiskServiceClient.common_project_path(**expected)
+
+    # Check that the path construction is reversible.
+    actual = WebRiskServiceClient.parse_common_project_path(path)
+    assert expected == actual
+
+
+def test_common_location_path():
+    project = "winkle"
+    location = "nautilus"
+
+    expected = "projects/{project}/locations/{location}".format(
+        project=project, location=location,
+    )
+    actual = WebRiskServiceClient.common_location_path(project, location)
+    assert expected == actual
+
+
+def test_parse_common_location_path():
+    expected = {
+        "project": "scallop",
+        "location": "abalone",
+    }
+    path = WebRiskServiceClient.common_location_path(**expected)
+
+    # Check that the path construction is reversible.
+    actual = WebRiskServiceClient.parse_common_location_path(path)
+    assert expected == actual
 
 
 def test_client_withDEFAULT_CLIENT_INFO():

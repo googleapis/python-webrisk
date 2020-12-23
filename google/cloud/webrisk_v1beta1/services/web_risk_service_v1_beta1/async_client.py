@@ -46,8 +46,48 @@ class WebRiskServiceV1Beta1AsyncClient:
     DEFAULT_ENDPOINT = WebRiskServiceV1Beta1Client.DEFAULT_ENDPOINT
     DEFAULT_MTLS_ENDPOINT = WebRiskServiceV1Beta1Client.DEFAULT_MTLS_ENDPOINT
 
+    common_billing_account_path = staticmethod(
+        WebRiskServiceV1Beta1Client.common_billing_account_path
+    )
+    parse_common_billing_account_path = staticmethod(
+        WebRiskServiceV1Beta1Client.parse_common_billing_account_path
+    )
+
+    common_folder_path = staticmethod(WebRiskServiceV1Beta1Client.common_folder_path)
+    parse_common_folder_path = staticmethod(
+        WebRiskServiceV1Beta1Client.parse_common_folder_path
+    )
+
+    common_organization_path = staticmethod(
+        WebRiskServiceV1Beta1Client.common_organization_path
+    )
+    parse_common_organization_path = staticmethod(
+        WebRiskServiceV1Beta1Client.parse_common_organization_path
+    )
+
+    common_project_path = staticmethod(WebRiskServiceV1Beta1Client.common_project_path)
+    parse_common_project_path = staticmethod(
+        WebRiskServiceV1Beta1Client.parse_common_project_path
+    )
+
+    common_location_path = staticmethod(
+        WebRiskServiceV1Beta1Client.common_location_path
+    )
+    parse_common_location_path = staticmethod(
+        WebRiskServiceV1Beta1Client.parse_common_location_path
+    )
+
     from_service_account_file = WebRiskServiceV1Beta1Client.from_service_account_file
     from_service_account_json = from_service_account_file
+
+    @property
+    def transport(self) -> WebRiskServiceV1Beta1Transport:
+        """Return the transport used by the client instance.
+
+        Returns:
+            WebRiskServiceV1Beta1Transport: The transport used by the client instance.
+        """
+        return self._client.transport
 
     get_transport_class = functools.partial(
         type(WebRiskServiceV1Beta1Client).get_transport_class,
@@ -151,7 +191,8 @@ class WebRiskServiceV1Beta1AsyncClient:
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([threat_type, version_token, constraints]):
+        has_flattened_params = any([threat_type, version_token, constraints])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
@@ -178,7 +219,7 @@ class WebRiskServiceV1Beta1AsyncClient:
                 maximum=60.0,
                 multiplier=1.3,
                 predicate=retries.if_exception_type(
-                    exceptions.ServiceUnavailable, exceptions.DeadlineExceeded,
+                    exceptions.DeadlineExceeded, exceptions.ServiceUnavailable,
                 ),
             ),
             default_timeout=600.0,
@@ -234,7 +275,8 @@ class WebRiskServiceV1Beta1AsyncClient:
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([uri, threat_types]):
+        has_flattened_params = any([uri, threat_types])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
@@ -247,8 +289,9 @@ class WebRiskServiceV1Beta1AsyncClient:
 
         if uri is not None:
             request.uri = uri
-        if threat_types is not None:
-            request.threat_types = threat_types
+
+        if threat_types:
+            request.threat_types.extend(threat_types)
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
@@ -259,7 +302,7 @@ class WebRiskServiceV1Beta1AsyncClient:
                 maximum=60.0,
                 multiplier=1.3,
                 predicate=retries.if_exception_type(
-                    exceptions.ServiceUnavailable, exceptions.DeadlineExceeded,
+                    exceptions.DeadlineExceeded, exceptions.ServiceUnavailable,
                 ),
             ),
             default_timeout=600.0,
@@ -321,7 +364,8 @@ class WebRiskServiceV1Beta1AsyncClient:
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([hash_prefix, threat_types]):
+        has_flattened_params = any([hash_prefix, threat_types])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
@@ -334,8 +378,9 @@ class WebRiskServiceV1Beta1AsyncClient:
 
         if hash_prefix is not None:
             request.hash_prefix = hash_prefix
-        if threat_types is not None:
-            request.threat_types = threat_types
+
+        if threat_types:
+            request.threat_types.extend(threat_types)
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
@@ -346,7 +391,7 @@ class WebRiskServiceV1Beta1AsyncClient:
                 maximum=60.0,
                 multiplier=1.3,
                 predicate=retries.if_exception_type(
-                    exceptions.ServiceUnavailable, exceptions.DeadlineExceeded,
+                    exceptions.DeadlineExceeded, exceptions.ServiceUnavailable,
                 ),
             ),
             default_timeout=600.0,
