@@ -138,6 +138,7 @@
     "setup.cfg",
     "testing/.gitignore",
     "tests/unit/gapic/webrisk_v1/test_web_risk_service.py",
-    "tests/unit/gapic/webrisk_v1beta1/test_web_risk_service_v1_beta1.py"
+    "tests/unit/gapic/webrisk_v1beta1/test_web_risk_service_v1_beta1.py",
+    "webrisk-v1-py.tar.gz"
   ]
 }
