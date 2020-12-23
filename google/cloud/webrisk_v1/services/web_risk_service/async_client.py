@@ -31,7 +31,7 @@ from google.oauth2 import service_account  # type: ignore
 from google.cloud.webrisk_v1.types import webrisk
 from google.protobuf import timestamp_pb2 as timestamp  # type: ignore
 
-from .transports.base import WebRiskServiceTransport
+from .transports.base import WebRiskServiceTransport, DEFAULT_CLIENT_INFO
 from .transports.grpc_asyncio import WebRiskServiceGrpcAsyncIOTransport
 from .client import WebRiskServiceClient
 
@@ -59,6 +59,7 @@ class WebRiskServiceAsyncClient:
         credentials: credentials.Credentials = None,
         transport: Union[str, WebRiskServiceTransport] = "grpc_asyncio",
         client_options: ClientOptions = None,
+        client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
     ) -> None:
         """Instantiate the web risk service client.
 
@@ -74,16 +75,19 @@ class WebRiskServiceAsyncClient:
             client_options (ClientOptions): Custom options for the client. It
                 won't take effect if a ``transport`` instance is provided.
                 (1) The ``api_endpoint`` property can be used to override the
-                default endpoint provided by the client. GOOGLE_API_USE_MTLS
+                default endpoint provided by the client. GOOGLE_API_USE_MTLS_ENDPOINT
                 environment variable can also be used to override the endpoint:
                 "always" (always use the default mTLS endpoint), "never" (always
-                use the default regular endpoint, this is the default value for
-                the environment variable) and "auto" (auto switch to the default
-                mTLS endpoint if client SSL credentials is present). However,
-                the ``api_endpoint`` property takes precedence if provided.
-                (2) The ``client_cert_source`` property is used to provide client
-                SSL credentials for mutual TLS transport. If not provided, the
-                default SSL credentials will be used if present.
+                use the default regular endpoint) and "auto" (auto switch to the
+                default mTLS endpoint if client certificate is present, this is
+                the default value). However, the ``api_endpoint`` property takes
+                precedence if provided.
+                (2) If GOOGLE_API_USE_CLIENT_CERTIFICATE environment variable
+                is "true", then the ``client_cert_source`` property can be used
+                to provide client certificate for mutual TLS transport. If
+                not provided, the default SSL client certificate will be used if
+                present. If GOOGLE_API_USE_CLIENT_CERTIFICATE is "false" or not
+                set, no client certificate will be used.
 
         Raises:
             google.auth.exceptions.MutualTlsChannelError: If mutual TLS transport
@@ -91,7 +95,10 @@ class WebRiskServiceAsyncClient:
         """
 
         self._client = WebRiskServiceClient(
-            credentials=credentials, transport=transport, client_options=client_options,
+            credentials=credentials,
+            transport=transport,
+            client_options=client_options,
+            client_info=client_info,
         )
 
     async def compute_threat_list_diff(
@@ -179,8 +186,16 @@ class WebRiskServiceAsyncClient:
         # and friendly error handling.
         rpc = gapic_v1.method_async.wrap_method(
             self._client._transport.compute_threat_list_diff,
-            default_timeout=None,
-            client_info=_client_info,
+            default_retry=retries.Retry(
+                initial=0.1,
+                maximum=60.0,
+                multiplier=1.3,
+                predicate=retries.if_exception_type(
+                    exceptions.ServiceUnavailable, exceptions.DeadlineExceeded,
+                ),
+            ),
+            default_timeout=600.0,
+            client_info=DEFAULT_CLIENT_INFO,
         )
 
         # Send the request.
@@ -257,8 +272,16 @@ class WebRiskServiceAsyncClient:
         # and friendly error handling.
         rpc = gapic_v1.method_async.wrap_method(
             self._client._transport.search_uris,
-            default_timeout=None,
-            client_info=_client_info,
+            default_retry=retries.Retry(
+                initial=0.1,
+                maximum=60.0,
+                multiplier=1.3,
+                predicate=retries.if_exception_type(
+                    exceptions.ServiceUnavailable, exceptions.DeadlineExceeded,
+                ),
+            ),
+            default_timeout=600.0,
+            client_info=DEFAULT_CLIENT_INFO,
         )
 
         # Send the request.
@@ -337,8 +360,16 @@ class WebRiskServiceAsyncClient:
         # and friendly error handling.
         rpc = gapic_v1.method_async.wrap_method(
             self._client._transport.search_hashes,
-            default_timeout=None,
-            client_info=_client_info,
+            default_retry=retries.Retry(
+                initial=0.1,
+                maximum=60.0,
+                multiplier=1.3,
+                predicate=retries.if_exception_type(
+                    exceptions.ServiceUnavailable, exceptions.DeadlineExceeded,
+                ),
+            ),
+            default_timeout=600.0,
+            client_info=DEFAULT_CLIENT_INFO,
         )
 
         # Send the request.
@@ -420,8 +451,8 @@ class WebRiskServiceAsyncClient:
         # and friendly error handling.
         rpc = gapic_v1.method_async.wrap_method(
             self._client._transport.create_submission,
-            default_timeout=None,
-            client_info=_client_info,
+            default_timeout=60.0,
+            client_info=DEFAULT_CLIENT_INFO,
         )
 
         # Certain fields should be provided within the metadata header;
@@ -438,11 +469,11 @@ class WebRiskServiceAsyncClient:
 
 
 try:
-    _client_info = gapic_v1.client_info.ClientInfo(
+    DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo(
         gapic_version=pkg_resources.get_distribution("google-cloud-webrisk",).version,
     )
 except pkg_resources.DistributionNotFound:
-    _client_info = gapic_v1.client_info.ClientInfo()
+    DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo()
 
 
 __all__ = ("WebRiskServiceAsyncClient",)
