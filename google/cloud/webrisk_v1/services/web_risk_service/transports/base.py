@@ -28,18 +28,17 @@ from google.cloud.webrisk_v1.types import webrisk
 class WebRiskServiceTransport(abc.ABC):
     """Abstract transport class for WebRiskService."""
 
-    AUTH_SCOPES = (
-        'https://www.googleapis.com/auth/cloud-platform',
-    )
+    AUTH_SCOPES = ("https://www.googleapis.com/auth/cloud-platform",)
 
     def __init__(
-            self, *,
-            host: str = 'webrisk.googleapis.com',
-            credentials: credentials.Credentials = None,
-            credentials_file: typing.Optional[str] = None,
-            scopes: typing.Optional[typing.Sequence[str]] = AUTH_SCOPES,
-            **kwargs,
-            ) -> None:
+        self,
+        *,
+        host: str = "webrisk.googleapis.com",
+        credentials: credentials.Credentials = None,
+        credentials_file: typing.Optional[str] = None,
+        scopes: typing.Optional[typing.Sequence[str]] = AUTH_SCOPES,
+        **kwargs,
+    ) -> None:
         """Instantiate the transport.
 
         Args:
@@ -55,17 +54,21 @@ class WebRiskServiceTransport(abc.ABC):
             scope (Optional[Sequence[str]]): A list of scopes.
         """
         # Save the hostname. Default to port 443 (HTTPS) if none is specified.
-        if ':' not in host:
-            host += ':443'
+        if ":" not in host:
+            host += ":443"
         self._host = host
 
         # If no credentials are provided, then determine the appropriate
         # defaults.
         if credentials and credentials_file:
-            raise exceptions.DuplicateCredentialArgs("'credentials_file' and 'credentials' are mutually exclusive")
+            raise exceptions.DuplicateCredentialArgs(
+                "'credentials_file' and 'credentials' are mutually exclusive"
+            )
 
         if credentials_file is not None:
-            credentials, _ = auth.load_credentials_from_file(credentials_file, scopes=scopes)
+            credentials, _ = auth.load_credentials_from_file(
+                credentials_file, scopes=scopes
+            )
         elif credentials is None:
             credentials, _ = auth.default(scopes=scopes)
 
@@ -73,42 +76,47 @@ class WebRiskServiceTransport(abc.ABC):
         self._credentials = credentials
 
     @property
-    def compute_threat_list_diff(self) -> typing.Callable[
-            [webrisk.ComputeThreatListDiffRequest],
-            typing.Union[
-                webrisk.ComputeThreatListDiffResponse,
-                typing.Awaitable[webrisk.ComputeThreatListDiffResponse]
-            ]]:
+    def compute_threat_list_diff(
+        self,
+    ) -> typing.Callable[
+        [webrisk.ComputeThreatListDiffRequest],
+        typing.Union[
+            webrisk.ComputeThreatListDiffResponse,
+            typing.Awaitable[webrisk.ComputeThreatListDiffResponse],
+        ],
+    ]:
         raise NotImplementedError()
 
     @property
-    def search_uris(self) -> typing.Callable[
-            [webrisk.SearchUrisRequest],
-            typing.Union[
-                webrisk.SearchUrisResponse,
-                typing.Awaitable[webrisk.SearchUrisResponse]
-            ]]:
+    def search_uris(
+        self,
+    ) -> typing.Callable[
+        [webrisk.SearchUrisRequest],
+        typing.Union[
+            webrisk.SearchUrisResponse, typing.Awaitable[webrisk.SearchUrisResponse]
+        ],
+    ]:
         raise NotImplementedError()
 
     @property
-    def search_hashes(self) -> typing.Callable[
-            [webrisk.SearchHashesRequest],
-            typing.Union[
-                webrisk.SearchHashesResponse,
-                typing.Awaitable[webrisk.SearchHashesResponse]
-            ]]:
+    def search_hashes(
+        self,
+    ) -> typing.Callable[
+        [webrisk.SearchHashesRequest],
+        typing.Union[
+            webrisk.SearchHashesResponse, typing.Awaitable[webrisk.SearchHashesResponse]
+        ],
+    ]:
         raise NotImplementedError()
 
     @property
-    def create_submission(self) -> typing.Callable[
-            [webrisk.CreateSubmissionRequest],
-            typing.Union[
-                webrisk.Submission,
-                typing.Awaitable[webrisk.Submission]
-            ]]:
+    def create_submission(
+        self,
+    ) -> typing.Callable[
+        [webrisk.CreateSubmissionRequest],
+        typing.Union[webrisk.Submission, typing.Awaitable[webrisk.Submission]],
+    ]:
         raise NotImplementedError()
 
 
-__all__ = (
-    'WebRiskServiceTransport',
-)
+__all__ = ("WebRiskServiceTransport",)

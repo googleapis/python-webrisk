@@ -24,13 +24,15 @@ from .grpc_asyncio import WebRiskServiceV1Beta1GrpcAsyncIOTransport
 
 
 # Compile a registry of transports.
-_transport_registry = OrderedDict()  # type: Dict[str, Type[WebRiskServiceV1Beta1Transport]]
-_transport_registry['grpc'] = WebRiskServiceV1Beta1GrpcTransport
-_transport_registry['grpc_asyncio'] = WebRiskServiceV1Beta1GrpcAsyncIOTransport
+_transport_registry = (
+    OrderedDict()
+)  # type: Dict[str, Type[WebRiskServiceV1Beta1Transport]]
+_transport_registry["grpc"] = WebRiskServiceV1Beta1GrpcTransport
+_transport_registry["grpc_asyncio"] = WebRiskServiceV1Beta1GrpcAsyncIOTransport
 
 
 __all__ = (
-    'WebRiskServiceV1Beta1Transport',
-    'WebRiskServiceV1Beta1GrpcTransport',
-    'WebRiskServiceV1Beta1GrpcAsyncIOTransport',
+    "WebRiskServiceV1Beta1Transport",
+    "WebRiskServiceV1Beta1GrpcTransport",
+    "WebRiskServiceV1Beta1GrpcAsyncIOTransport",
 )
