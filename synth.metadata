@@ -11,8 +11,8 @@
       "git": {
         "name": "googleapis",
         "remote": "https://github.com/googleapis/googleapis.git",
-        "sha": "6a18a3c50ffd62de53dd2e44f599d6696580f90b",
-        "internalRef": "331031262"
+        "sha": "b821f320473c8ec05a1c7fb9a496c958b1ab9834",
+        "internalRef": "331104099"
       }
     },
     {
@@ -140,7 +140,6 @@
     "tests/unit/gapic/webrisk_v1/__init__.py",
     "tests/unit/gapic/webrisk_v1/test_web_risk_service.py",
     "tests/unit/gapic/webrisk_v1beta1/__init__.py",
-    "tests/unit/gapic/webrisk_v1beta1/test_web_risk_service_v1_beta1.py",
-    "webrisk-v1beta1-py.tar.gz"
+    "tests/unit/gapic/webrisk_v1beta1/test_web_risk_service_v1_beta1.py"
   ]
 }
