@@ -179,7 +179,15 @@ class WebRiskServiceAsyncClient:
         # and friendly error handling.
         rpc = gapic_v1.method_async.wrap_method(
             self._client._transport.compute_threat_list_diff,
-            default_timeout=None,
+            default_retry=retries.Retry(
+                initial=0.1,
+                maximum=60.0,
+                multiplier=1.3,
+                predicate=retries.if_exception_type(
+                    exceptions.DeadlineExceeded, exceptions.ServiceUnavailable,
+                ),
+            ),
+            default_timeout=600.0,
             client_info=_client_info,
         )
 
@@ -257,7 +265,15 @@ class WebRiskServiceAsyncClient:
         # and friendly error handling.
         rpc = gapic_v1.method_async.wrap_method(
             self._client._transport.search_uris,
-            default_timeout=None,
+            default_retry=retries.Retry(
+                initial=0.1,
+                maximum=60.0,
+                multiplier=1.3,
+                predicate=retries.if_exception_type(
+                    exceptions.DeadlineExceeded, exceptions.ServiceUnavailable,
+                ),
+            ),
+            default_timeout=600.0,
             client_info=_client_info,
         )
 
@@ -337,7 +353,15 @@ class WebRiskServiceAsyncClient:
         # and friendly error handling.
         rpc = gapic_v1.method_async.wrap_method(
             self._client._transport.search_hashes,
-            default_timeout=None,
+            default_retry=retries.Retry(
+                initial=0.1,
+                maximum=60.0,
+                multiplier=1.3,
+                predicate=retries.if_exception_type(
+                    exceptions.DeadlineExceeded, exceptions.ServiceUnavailable,
+                ),
+            ),
+            default_timeout=600.0,
             client_info=_client_info,
         )
 
@@ -420,7 +444,7 @@ class WebRiskServiceAsyncClient:
         # and friendly error handling.
         rpc = gapic_v1.method_async.wrap_method(
             self._client._transport.create_submission,
-            default_timeout=None,
+            default_timeout=60.0,
             client_info=_client_info,
         )
 

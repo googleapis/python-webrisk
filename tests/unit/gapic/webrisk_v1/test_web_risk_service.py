@@ -22,6 +22,7 @@ import grpc
 from grpc.experimental import aio
 import math
 import pytest
+from proto.marshal.rules.dates import DurationRule, TimestampRule
 
 from google import auth
 from google.api_core import client_options
@@ -410,8 +411,11 @@ def test_compute_threat_list_diff_flattened():
         # request object values.
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
+
         assert args[0].threat_type == webrisk.ThreatType.MALWARE
+
         assert args[0].version_token == b"version_token_blob"
+
         assert args[0].constraints == webrisk.ComputeThreatListDiffRequest.Constraints(
             max_diff_entries=1687
         )
@@ -461,8 +465,11 @@ async def test_compute_threat_list_diff_flattened_async():
         # request object values.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
+
         assert args[0].threat_type == webrisk.ThreatType.MALWARE
+
         assert args[0].version_token == b"version_token_blob"
+
         assert args[0].constraints == webrisk.ComputeThreatListDiffRequest.Constraints(
             max_diff_entries=1687
         )
@@ -560,7 +567,9 @@ def test_search_uris_flattened():
         # request object values.
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
+
         assert args[0].uri == "uri_value"
+
         assert args[0].threat_types == [webrisk.ThreatType.MALWARE]
 
 
@@ -601,7 +610,9 @@ async def test_search_uris_flattened_async():
         # request object values.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
+
         assert args[0].uri == "uri_value"
+
         assert args[0].threat_types == [webrisk.ThreatType.MALWARE]
 
 
@@ -694,7 +705,9 @@ def test_search_hashes_flattened():
         # request object values.
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
+
         assert args[0].hash_prefix == b"hash_prefix_blob"
+
         assert args[0].threat_types == [webrisk.ThreatType.MALWARE]
 
 
@@ -735,7 +748,9 @@ async def test_search_hashes_flattened_async():
         # request object values.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
+
         assert args[0].hash_prefix == b"hash_prefix_blob"
+
         assert args[0].threat_types == [webrisk.ThreatType.MALWARE]
 
 
@@ -889,7 +904,9 @@ def test_create_submission_flattened():
         # request object values.
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
+
         assert args[0].parent == "parent_value"
+
         assert args[0].submission == webrisk.Submission(uri="uri_value")
 
 
@@ -928,7 +945,9 @@ async def test_create_submission_flattened_async():
         # request object values.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
+
         assert args[0].parent == "parent_value"
+
         assert args[0].submission == webrisk.Submission(uri="uri_value")
 
 
