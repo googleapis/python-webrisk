@@ -480,9 +480,8 @@ class WebRiskServiceV1Beta1Client(metaclass=WebRiskServiceV1Beta1ClientMeta):
 
             if uri is not None:
                 request.uri = uri
-
-            if threat_types:
-                request.threat_types.extend(threat_types)
+            if threat_types is not None:
+                request.threat_types = threat_types
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
@@ -564,9 +563,8 @@ class WebRiskServiceV1Beta1Client(metaclass=WebRiskServiceV1Beta1ClientMeta):
 
             if hash_prefix is not None:
                 request.hash_prefix = hash_prefix
-
-            if threat_types:
-                request.threat_types.extend(threat_types)
+            if threat_types is not None:
+                request.threat_types = threat_types
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
