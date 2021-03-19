@@ -77,7 +77,6 @@ class WebRiskServiceV1Beta1AsyncClient:
         WebRiskServiceV1Beta1Client.parse_common_location_path
     )
 
-    from_service_account_info = WebRiskServiceV1Beta1Client.from_service_account_info
     from_service_account_file = WebRiskServiceV1Beta1Client.from_service_account_file
     from_service_account_json = from_service_account_file
 
@@ -157,9 +156,9 @@ class WebRiskServiceV1Beta1AsyncClient:
         r"""Gets the most recent threat list diffs.
 
         Args:
-            request (:class:`google.cloud.webrisk_v1beta1.types.ComputeThreatListDiffRequest`):
+            request (:class:`~.webrisk.ComputeThreatListDiffRequest`):
                 The request object. Describes an API diff request.
-            threat_type (:class:`google.cloud.webrisk_v1beta1.types.ThreatType`):
+            threat_type (:class:`~.webrisk.ThreatType`):
                 The ThreatList to update.
                 This corresponds to the ``threat_type`` field
                 on the ``request`` instance; if ``request`` is provided, this
@@ -169,14 +168,12 @@ class WebRiskServiceV1Beta1AsyncClient:
                 client for the requested list (the
                 client version that was received from
                 the last successful diff).
-
                 This corresponds to the ``version_token`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-            constraints (:class:`google.cloud.webrisk_v1beta1.types.ComputeThreatListDiffRequest.Constraints`):
+            constraints (:class:`~.webrisk.ComputeThreatListDiffRequest.Constraints`):
                 Required. The constraints associated
                 with this request.
-
                 This corresponds to the ``constraints`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -188,7 +185,7 @@ class WebRiskServiceV1Beta1AsyncClient:
                 sent along with the request as metadata.
 
         Returns:
-            google.cloud.webrisk_v1beta1.types.ComputeThreatListDiffResponse:
+            ~.webrisk.ComputeThreatListDiffResponse:
 
         """
         # Create or coerce a protobuf request object.
@@ -249,20 +246,18 @@ class WebRiskServiceV1Beta1AsyncClient:
         given threatList.
 
         Args:
-            request (:class:`google.cloud.webrisk_v1beta1.types.SearchUrisRequest`):
+            request (:class:`~.webrisk.SearchUrisRequest`):
                 The request object. Request to check URI entries against
                 threatLists.
             uri (:class:`str`):
                 Required. The URI to be checked for
                 matches.
-
                 This corresponds to the ``uri`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-            threat_types (:class:`Sequence[google.cloud.webrisk_v1beta1.types.ThreatType]`):
+            threat_types (:class:`Sequence[~.webrisk.ThreatType]`):
                 Required. The ThreatLists to search
                 in.
-
                 This corresponds to the ``threat_types`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -274,7 +269,7 @@ class WebRiskServiceV1Beta1AsyncClient:
                 sent along with the request as metadata.
 
         Returns:
-            google.cloud.webrisk_v1beta1.types.SearchUrisResponse:
+            ~.webrisk.SearchUrisResponse:
 
         """
         # Create or coerce a protobuf request object.
@@ -338,7 +333,7 @@ class WebRiskServiceV1Beta1AsyncClient:
         match of a threat.
 
         Args:
-            request (:class:`google.cloud.webrisk_v1beta1.types.SearchHashesRequest`):
+            request (:class:`~.webrisk.SearchHashesRequest`):
                 The request object. Request to return full hashes
                 matched by the provided hash prefixes.
             hash_prefix (:class:`bytes`):
@@ -346,14 +341,12 @@ class WebRiskServiceV1Beta1AsyncClient:
                 significant 4-32 bytes of a SHA256 hash.
                 For JSON requests, this field is
                 base64-encoded.
-
                 This corresponds to the ``hash_prefix`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-            threat_types (:class:`Sequence[google.cloud.webrisk_v1beta1.types.ThreatType]`):
+            threat_types (:class:`Sequence[~.webrisk.ThreatType]`):
                 Required. The ThreatLists to search
                 in.
-
                 This corresponds to the ``threat_types`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -365,7 +358,7 @@ class WebRiskServiceV1Beta1AsyncClient:
                 sent along with the request as metadata.
 
         Returns:
-            google.cloud.webrisk_v1beta1.types.SearchHashesResponse:
+            ~.webrisk.SearchHashesResponse:
 
         """
         # Create or coerce a protobuf request object.

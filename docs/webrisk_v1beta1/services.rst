@@ -1,6 +1,6 @@
 Services for Google Cloud Webrisk v1beta1 API
 =============================================
-.. toctree::
-    :maxdepth: 2
 
-    web_risk_service_v1_beta1
+.. automodule:: google.cloud.webrisk_v1beta1.services.web_risk_service_v1_beta1
+    :members:
+    :inherited-members:
