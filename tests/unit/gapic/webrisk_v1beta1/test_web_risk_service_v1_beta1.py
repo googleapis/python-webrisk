@@ -89,15 +89,19 @@ def test__get_default_mtls_endpoint():
     )
 
 
-def test_web_risk_service_v1_beta1_client_from_service_account_info():
+@pytest.mark.parametrize(
+    "client_class", [WebRiskServiceV1Beta1Client, WebRiskServiceV1Beta1AsyncClient,]
+)
+def test_web_risk_service_v1_beta1_client_from_service_account_info(client_class):
     creds = credentials.AnonymousCredentials()
     with mock.patch.object(
         service_account.Credentials, "from_service_account_info"
     ) as factory:
         factory.return_value = creds
         info = {"valid": True}
-        client = WebRiskServiceV1Beta1Client.from_service_account_info(info)
+        client = client_class.from_service_account_info(info)
         assert client.transport._credentials == creds
+        assert isinstance(client, client_class)
 
         assert client.transport._host == "webrisk.googleapis.com:443"
 
@@ -113,9 +117,11 @@ def test_web_risk_service_v1_beta1_client_from_service_account_file(client_class
         factory.return_value = creds
         client = client_class.from_service_account_file("dummy/file/path.json")
         assert client.transport._credentials == creds
+        assert isinstance(client, client_class)
 
         client = client_class.from_service_account_json("dummy/file/path.json")
         assert client.transport._credentials == creds
+        assert isinstance(client, client_class)
 
         assert client.transport._host == "webrisk.googleapis.com:443"
 
@@ -508,6 +514,24 @@ def test_compute_threat_list_diff_from_dict():
     test_compute_threat_list_diff(request_type=dict)
 
 
+def test_compute_threat_list_diff_empty_call():
+    # This test is a coverage failsafe to make sure that totally empty calls,
+    # i.e. request == None and no flattened fields passed, work.
+    client = WebRiskServiceV1Beta1Client(
+        credentials=credentials.AnonymousCredentials(), transport="grpc",
+    )
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(
+        type(client.transport.compute_threat_list_diff), "__call__"
+    ) as call:
+        client.compute_threat_list_diff()
+        call.assert_called()
+        _, args, _ = call.mock_calls[0]
+
+        assert args[0] == webrisk.ComputeThreatListDiffRequest()
+
+
 @pytest.mark.asyncio
 async def test_compute_threat_list_diff_async(
     transport: str = "grpc_asyncio", request_type=webrisk.ComputeThreatListDiffRequest
@@ -700,6 +724,22 @@ def test_search_uris_from_dict():
     test_search_uris(request_type=dict)
 
 
+def test_search_uris_empty_call():
+    # This test is a coverage failsafe to make sure that totally empty calls,
+    # i.e. request == None and no flattened fields passed, work.
+    client = WebRiskServiceV1Beta1Client(
+        credentials=credentials.AnonymousCredentials(), transport="grpc",
+    )
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(type(client.transport.search_uris), "__call__") as call:
+        client.search_uris()
+        call.assert_called()
+        _, args, _ = call.mock_calls[0]
+
+        assert args[0] == webrisk.SearchUrisRequest()
+
+
 @pytest.mark.asyncio
 async def test_search_uris_async(
     transport: str = "grpc_asyncio", request_type=webrisk.SearchUrisRequest
@@ -854,6 +894,22 @@ def test_search_hashes(
 
 def test_search_hashes_from_dict():
     test_search_hashes(request_type=dict)
+
+
+def test_search_hashes_empty_call():
+    # This test is a coverage failsafe to make sure that totally empty calls,
+    # i.e. request == None and no flattened fields passed, work.
+    client = WebRiskServiceV1Beta1Client(
+        credentials=credentials.AnonymousCredentials(), transport="grpc",
+    )
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(type(client.transport.search_hashes), "__call__") as call:
+        client.search_hashes()
+        call.assert_called()
+        _, args, _ = call.mock_calls[0]
+
+        assert args[0] == webrisk.SearchHashesRequest()
 
 
 @pytest.mark.asyncio
