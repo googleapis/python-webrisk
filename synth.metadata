@@ -4,7 +4,7 @@
       "git": {
         "name": ".",
         "remote": "https://github.com/googleapis/python-webrisk.git",
-        "sha": "4cda399cc9aa320949c63ed057059914ab97c8f6"
+        "sha": "a9ef7636364ab6f3659801f56bd4101dbe742c24"
       }
     },
     {
@@ -149,6 +149,6 @@
     "tests/unit/gapic/webrisk_v1/test_web_risk_service.py",
     "tests/unit/gapic/webrisk_v1beta1/__init__.py",
     "tests/unit/gapic/webrisk_v1beta1/test_web_risk_service_v1_beta1.py",
-    "webrisk-v1-py.tar.gz"
+    "webrisk-v1beta1-py.tar.gz"
   ]
 }
