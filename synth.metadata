@@ -148,7 +148,6 @@
     "tests/unit/gapic/webrisk_v1/__init__.py",
     "tests/unit/gapic/webrisk_v1/test_web_risk_service.py",
     "tests/unit/gapic/webrisk_v1beta1/__init__.py",
-    "tests/unit/gapic/webrisk_v1beta1/test_web_risk_service_v1_beta1.py",
-    "webrisk-v1beta1-py.tar.gz"
+    "tests/unit/gapic/webrisk_v1beta1/test_web_risk_service_v1_beta1.py"
   ]
 }
