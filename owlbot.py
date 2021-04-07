@@ -21,7 +21,7 @@ common = gcp.CommonTemplates()
 # ----------------------------------------------------------------------------
 # Generate webrisk GAPIC layer
 # ----------------------------------------------------------------------------
-for library in s.get_staging_dirs('v1'):
+for library in s.get_staging_dirs("v1"):
     s.copy(library, excludes=["docs/index.rst", "nox.py", "README.rst", "setup.py"])
 s.remove_staging_dirs()
 
