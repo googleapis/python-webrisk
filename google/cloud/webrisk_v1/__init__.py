@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 # Copyright 2020 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,6 +15,7 @@
 #
 
 from .services.web_risk_service import WebRiskServiceClient
+
 from .types.webrisk import CompressionType
 from .types.webrisk import ComputeThreatListDiffRequest
 from .types.webrisk import ComputeThreatListDiffResponse
@@ -31,7 +31,6 @@ from .types.webrisk import Submission
 from .types.webrisk import ThreatEntryAdditions
 from .types.webrisk import ThreatEntryRemovals
 from .types.webrisk import ThreatType
-
 
 __all__ = (
     "CompressionType",

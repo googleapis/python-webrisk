@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 # Copyright 2020 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,7 +13,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-
 from collections import OrderedDict
 import functools
 import re
@@ -30,7 +28,6 @@ from google.oauth2 import service_account  # type: ignore
 
 from google.cloud.webrisk_v1beta1.types import webrisk
 from google.protobuf import timestamp_pb2 as timestamp  # type: ignore
-
 from .transports.base import WebRiskServiceV1Beta1Transport, DEFAULT_CLIENT_INFO
 from .transports.grpc_asyncio import WebRiskServiceV1Beta1GrpcAsyncIOTransport
 from .client import WebRiskServiceV1Beta1Client
@@ -52,24 +49,20 @@ class WebRiskServiceV1Beta1AsyncClient:
     parse_common_billing_account_path = staticmethod(
         WebRiskServiceV1Beta1Client.parse_common_billing_account_path
     )
-
     common_folder_path = staticmethod(WebRiskServiceV1Beta1Client.common_folder_path)
     parse_common_folder_path = staticmethod(
         WebRiskServiceV1Beta1Client.parse_common_folder_path
     )
-
     common_organization_path = staticmethod(
         WebRiskServiceV1Beta1Client.common_organization_path
     )
     parse_common_organization_path = staticmethod(
         WebRiskServiceV1Beta1Client.parse_common_organization_path
     )
-
     common_project_path = staticmethod(WebRiskServiceV1Beta1Client.common_project_path)
     parse_common_project_path = staticmethod(
         WebRiskServiceV1Beta1Client.parse_common_project_path
     )
-
     common_location_path = staticmethod(
         WebRiskServiceV1Beta1Client.common_location_path
     )
@@ -163,7 +156,6 @@ class WebRiskServiceV1Beta1AsyncClient:
             google.auth.exceptions.MutualTlsChannelError: If mutual TLS transport
                 creation failed for any reason.
         """
-
         self._client = WebRiskServiceV1Beta1Client(
             credentials=credentials,
             transport=transport,
@@ -186,7 +178,8 @@ class WebRiskServiceV1Beta1AsyncClient:
 
         Args:
             request (:class:`google.cloud.webrisk_v1beta1.types.ComputeThreatListDiffRequest`):
-                The request object. Describes an API diff request.
+                The request object.
+                Describes an API diff request.
             threat_type (:class:`google.cloud.webrisk_v1beta1.types.ThreatType`):
                 The ThreatList to update.
                 This corresponds to the ``threat_type`` field
@@ -208,7 +201,6 @@ class WebRiskServiceV1Beta1AsyncClient:
                 This corresponds to the ``constraints`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -233,7 +225,6 @@ class WebRiskServiceV1Beta1AsyncClient:
 
         # If we have keyword arguments corresponding to fields on the
         # request, apply these.
-
         if threat_type is not None:
             request.threat_type = threat_type
         if version_token is not None:
@@ -279,7 +270,8 @@ class WebRiskServiceV1Beta1AsyncClient:
 
         Args:
             request (:class:`google.cloud.webrisk_v1beta1.types.SearchUrisRequest`):
-                The request object. Request to check URI entries against
+                The request object.
+                Request to check URI entries against
                 threatLists.
             uri (:class:`str`):
                 Required. The URI to be checked for
@@ -295,7 +287,6 @@ class WebRiskServiceV1Beta1AsyncClient:
                 This corresponds to the ``threat_types`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -320,10 +311,8 @@ class WebRiskServiceV1Beta1AsyncClient:
 
         # If we have keyword arguments corresponding to fields on the
         # request, apply these.
-
         if uri is not None:
             request.uri = uri
-
         if threat_types:
             request.threat_types.extend(threat_types)
 
@@ -369,7 +358,8 @@ class WebRiskServiceV1Beta1AsyncClient:
 
         Args:
             request (:class:`google.cloud.webrisk_v1beta1.types.SearchHashesRequest`):
-                The request object. Request to return full hashes
+                The request object.
+                Request to return full hashes
                 matched by the provided hash prefixes.
             hash_prefix (:class:`bytes`):
                 A hash prefix, consisting of the most
@@ -387,7 +377,6 @@ class WebRiskServiceV1Beta1AsyncClient:
                 This corresponds to the ``threat_types`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -412,10 +401,8 @@ class WebRiskServiceV1Beta1AsyncClient:
 
         # If we have keyword arguments corresponding to fields on the
         # request, apply these.
-
         if hash_prefix is not None:
             request.hash_prefix = hash_prefix
-
         if threat_types:
             request.threat_types.extend(threat_types)
 
