@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 # Copyright 2020 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,15 +13,16 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-
 import os
 import mock
+import packaging.version
 
 import grpc
 from grpc.experimental import aio
 import math
 import pytest
 from proto.marshal.rules.dates import DurationRule, TimestampRule
+
 
 from google import auth
 from google.api_core import client_options
@@ -35,9 +35,38 @@ from google.auth.exceptions import MutualTLSChannelError
 from google.cloud.webrisk_v1.services.web_risk_service import WebRiskServiceAsyncClient
 from google.cloud.webrisk_v1.services.web_risk_service import WebRiskServiceClient
 from google.cloud.webrisk_v1.services.web_risk_service import transports
+from google.cloud.webrisk_v1.services.web_risk_service.transports.base import (
+    _API_CORE_VERSION,
+)
+from google.cloud.webrisk_v1.services.web_risk_service.transports.base import (
+    _GOOGLE_AUTH_VERSION,
+)
 from google.cloud.webrisk_v1.types import webrisk
 from google.oauth2 import service_account
 from google.protobuf import timestamp_pb2 as timestamp  # type: ignore
+
+
+# TODO(busunkim): Once google-api-core >= 1.26.0 is required:
+# - Delete all the api-core and auth "less than" test cases
+# - Delete these pytest markers (Make the "greater than or equal to" tests the default).
+requires_google_auth_lt_1_25_0 = pytest.mark.skipif(
+    packaging.version.parse(_GOOGLE_AUTH_VERSION) >= packaging.version.parse("1.25.0"),
+    reason="This test requires google-auth < 1.25.0",
+)
+requires_google_auth_gte_1_25_0 = pytest.mark.skipif(
+    packaging.version.parse(_GOOGLE_AUTH_VERSION) < packaging.version.parse("1.25.0"),
+    reason="This test requires google-auth >= 1.25.0",
+)
+
+requires_api_core_lt_1_26_0 = pytest.mark.skipif(
+    packaging.version.parse(_API_CORE_VERSION) >= packaging.version.parse("1.26.0"),
+    reason="This test requires google-api-core < 1.26.0",
+)
+
+requires_api_core_gte_1_26_0 = pytest.mark.skipif(
+    packaging.version.parse(_API_CORE_VERSION) < packaging.version.parse("1.26.0"),
+    reason="This test requires google-api-core >= 1.26.0",
+)
 
 
 def client_cert_source_callback():
@@ -462,24 +491,19 @@ def test_compute_threat_list_diff(
             response_type=webrisk.ComputeThreatListDiffResponse.ResponseType.DIFF,
             new_version_token=b"new_version_token_blob",
         )
-
         response = client.compute_threat_list_diff(request)
 
         # Establish that the underlying gRPC stub method was called.
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
-
         assert args[0] == webrisk.ComputeThreatListDiffRequest()
 
     # Establish that the response is the type that we expect.
-
     assert isinstance(response, webrisk.ComputeThreatListDiffResponse)
-
     assert (
         response.response_type
         == webrisk.ComputeThreatListDiffResponse.ResponseType.DIFF
     )
-
     assert response.new_version_token == b"new_version_token_blob"
 
 
@@ -501,7 +525,6 @@ def test_compute_threat_list_diff_empty_call():
         client.compute_threat_list_diff()
         call.assert_called()
         _, args, _ = call.mock_calls[0]
-
         assert args[0] == webrisk.ComputeThreatListDiffRequest()
 
 
@@ -528,23 +551,19 @@ async def test_compute_threat_list_diff_async(
                 new_version_token=b"new_version_token_blob",
             )
         )
-
         response = await client.compute_threat_list_diff(request)
 
         # Establish that the underlying gRPC stub method was called.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
-
         assert args[0] == webrisk.ComputeThreatListDiffRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, webrisk.ComputeThreatListDiffResponse)
-
     assert (
         response.response_type
         == webrisk.ComputeThreatListDiffResponse.ResponseType.DIFF
     )
-
     assert response.new_version_token == b"new_version_token_blob"
 
 
@@ -562,7 +581,6 @@ def test_compute_threat_list_diff_flattened():
     ) as call:
         # Designate an appropriate return value for the call.
         call.return_value = webrisk.ComputeThreatListDiffResponse()
-
         # Call the method with a truthy value for each flattened field,
         # using the keyword arguments to the method.
         client.compute_threat_list_diff(
@@ -577,11 +595,8 @@ def test_compute_threat_list_diff_flattened():
         # request object values.
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
-
         assert args[0].threat_type == webrisk.ThreatType.MALWARE
-
         assert args[0].version_token == b"version_token_blob"
-
         assert args[0].constraints == webrisk.ComputeThreatListDiffRequest.Constraints(
             max_diff_entries=1687
         )
@@ -631,11 +646,8 @@ async def test_compute_threat_list_diff_flattened_async():
         # request object values.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
-
         assert args[0].threat_type == webrisk.ThreatType.MALWARE
-
         assert args[0].version_token == b"version_token_blob"
-
         assert args[0].constraints == webrisk.ComputeThreatListDiffRequest.Constraints(
             max_diff_entries=1687
         )
@@ -671,17 +683,14 @@ def test_search_uris(transport: str = "grpc", request_type=webrisk.SearchUrisReq
     with mock.patch.object(type(client.transport.search_uris), "__call__") as call:
         # Designate an appropriate return value for the call.
         call.return_value = webrisk.SearchUrisResponse()
-
         response = client.search_uris(request)
 
         # Establish that the underlying gRPC stub method was called.
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
-
         assert args[0] == webrisk.SearchUrisRequest()
 
     # Establish that the response is the type that we expect.
-
     assert isinstance(response, webrisk.SearchUrisResponse)
 
 
@@ -701,7 +710,6 @@ def test_search_uris_empty_call():
         client.search_uris()
         call.assert_called()
         _, args, _ = call.mock_calls[0]
-
         assert args[0] == webrisk.SearchUrisRequest()
 
 
@@ -723,13 +731,11 @@ async def test_search_uris_async(
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
             webrisk.SearchUrisResponse()
         )
-
         response = await client.search_uris(request)
 
         # Establish that the underlying gRPC stub method was called.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
-
         assert args[0] == webrisk.SearchUrisRequest()
 
     # Establish that the response is the type that we expect.
@@ -748,7 +754,6 @@ def test_search_uris_flattened():
     with mock.patch.object(type(client.transport.search_uris), "__call__") as call:
         # Designate an appropriate return value for the call.
         call.return_value = webrisk.SearchUrisResponse()
-
         # Call the method with a truthy value for each flattened field,
         # using the keyword arguments to the method.
         client.search_uris(
@@ -759,9 +764,7 @@ def test_search_uris_flattened():
         # request object values.
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
-
         assert args[0].uri == "uri_value"
-
         assert args[0].threat_types == [webrisk.ThreatType.MALWARE]
 
 
@@ -800,9 +803,7 @@ async def test_search_uris_flattened_async():
         # request object values.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
-
         assert args[0].uri == "uri_value"
-
         assert args[0].threat_types == [webrisk.ThreatType.MALWARE]
 
 
@@ -835,17 +836,14 @@ def test_search_hashes(
     with mock.patch.object(type(client.transport.search_hashes), "__call__") as call:
         # Designate an appropriate return value for the call.
         call.return_value = webrisk.SearchHashesResponse()
-
         response = client.search_hashes(request)
 
         # Establish that the underlying gRPC stub method was called.
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
-
         assert args[0] == webrisk.SearchHashesRequest()
 
     # Establish that the response is the type that we expect.
-
     assert isinstance(response, webrisk.SearchHashesResponse)
 
 
@@ -865,7 +863,6 @@ def test_search_hashes_empty_call():
         client.search_hashes()
         call.assert_called()
         _, args, _ = call.mock_calls[0]
-
         assert args[0] == webrisk.SearchHashesRequest()
 
 
@@ -887,13 +884,11 @@ async def test_search_hashes_async(
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
             webrisk.SearchHashesResponse()
         )
-
         response = await client.search_hashes(request)
 
         # Establish that the underlying gRPC stub method was called.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
-
         assert args[0] == webrisk.SearchHashesRequest()
 
     # Establish that the response is the type that we expect.
@@ -912,7 +907,6 @@ def test_search_hashes_flattened():
     with mock.patch.object(type(client.transport.search_hashes), "__call__") as call:
         # Designate an appropriate return value for the call.
         call.return_value = webrisk.SearchHashesResponse()
-
         # Call the method with a truthy value for each flattened field,
         # using the keyword arguments to the method.
         client.search_hashes(
@@ -923,9 +917,7 @@ def test_search_hashes_flattened():
         # request object values.
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
-
         assert args[0].hash_prefix == b"hash_prefix_blob"
-
         assert args[0].threat_types == [webrisk.ThreatType.MALWARE]
 
 
@@ -964,9 +956,7 @@ async def test_search_hashes_flattened_async():
         # request object values.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
-
         assert args[0].hash_prefix == b"hash_prefix_blob"
-
         assert args[0].threat_types == [webrisk.ThreatType.MALWARE]
 
 
@@ -1001,19 +991,15 @@ def test_create_submission(
     ) as call:
         # Designate an appropriate return value for the call.
         call.return_value = webrisk.Submission(uri="uri_value",)
-
         response = client.create_submission(request)
 
         # Establish that the underlying gRPC stub method was called.
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
-
         assert args[0] == webrisk.CreateSubmissionRequest()
 
     # Establish that the response is the type that we expect.
-
     assert isinstance(response, webrisk.Submission)
-
     assert response.uri == "uri_value"
 
 
@@ -1035,7 +1021,6 @@ def test_create_submission_empty_call():
         client.create_submission()
         call.assert_called()
         _, args, _ = call.mock_calls[0]
-
         assert args[0] == webrisk.CreateSubmissionRequest()
 
 
@@ -1059,18 +1044,15 @@ async def test_create_submission_async(
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
             webrisk.Submission(uri="uri_value",)
         )
-
         response = await client.create_submission(request)
 
         # Establish that the underlying gRPC stub method was called.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
-
         assert args[0] == webrisk.CreateSubmissionRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, webrisk.Submission)
-
     assert response.uri == "uri_value"
 
 
@@ -1085,6 +1067,7 @@ def test_create_submission_field_headers():
     # Any value that is part of the HTTP/1.1 URI should be sent as
     # a field header. Set these to a non-empty value.
     request = webrisk.CreateSubmissionRequest()
+
     request.parent = "parent/value"
 
     # Mock the actual call within the gRPC stub, and fake the request.
@@ -1092,7 +1075,6 @@ def test_create_submission_field_headers():
         type(client.transport.create_submission), "__call__"
     ) as call:
         call.return_value = webrisk.Submission()
-
         client.create_submission(request)
 
         # Establish that the underlying gRPC stub method was called.
@@ -1112,6 +1094,7 @@ async def test_create_submission_field_headers_async():
     # Any value that is part of the HTTP/1.1 URI should be sent as
     # a field header. Set these to a non-empty value.
     request = webrisk.CreateSubmissionRequest()
+
     request.parent = "parent/value"
 
     # Mock the actual call within the gRPC stub, and fake the request.
@@ -1119,7 +1102,6 @@ async def test_create_submission_field_headers_async():
         type(client.transport.create_submission), "__call__"
     ) as call:
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(webrisk.Submission())
-
         await client.create_submission(request)
 
         # Establish that the underlying gRPC stub method was called.
@@ -1141,7 +1123,6 @@ def test_create_submission_flattened():
     ) as call:
         # Designate an appropriate return value for the call.
         call.return_value = webrisk.Submission()
-
         # Call the method with a truthy value for each flattened field,
         # using the keyword arguments to the method.
         client.create_submission(
@@ -1152,9 +1133,7 @@ def test_create_submission_flattened():
         # request object values.
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
-
         assert args[0].parent == "parent_value"
-
         assert args[0].submission == webrisk.Submission(uri="uri_value")
 
 
@@ -1193,9 +1172,7 @@ async def test_create_submission_flattened_async():
         # request object values.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
-
         assert args[0].parent == "parent_value"
-
         assert args[0].submission == webrisk.Submission(uri="uri_value")
 
 
@@ -1320,10 +1297,32 @@ def test_web_risk_service_base_transport():
             getattr(transport, method)(request=object())
 
 
+@requires_google_auth_gte_1_25_0
 def test_web_risk_service_base_transport_with_credentials_file():
     # Instantiate the base transport with a credentials file
     with mock.patch.object(
-        auth, "load_credentials_from_file"
+        auth, "load_credentials_from_file", autospec=True
+    ) as load_creds, mock.patch(
+        "google.cloud.webrisk_v1.services.web_risk_service.transports.WebRiskServiceTransport._prep_wrapped_messages"
+    ) as Transport:
+        Transport.return_value = None
+        load_creds.return_value = (credentials.AnonymousCredentials(), None)
+        transport = transports.WebRiskServiceTransport(
+            credentials_file="credentials.json", quota_project_id="octopus",
+        )
+        load_creds.assert_called_once_with(
+            "credentials.json",
+            scopes=None,
+            default_scopes=("https://www.googleapis.com/auth/cloud-platform",),
+            quota_project_id="octopus",
+        )
+
+
+@requires_google_auth_lt_1_25_0
+def test_web_risk_service_base_transport_with_credentials_file_old_google_auth():
+    # Instantiate the base transport with a credentials file
+    with mock.patch.object(
+        auth, "load_credentials_from_file", autospec=True
     ) as load_creds, mock.patch(
         "google.cloud.webrisk_v1.services.web_risk_service.transports.WebRiskServiceTransport._prep_wrapped_messages"
     ) as Transport:
@@ -1341,7 +1340,7 @@ def test_web_risk_service_base_transport_with_credentials_file():
 
 def test_web_risk_service_base_transport_with_adc():
     # Test the default credentials are used if credentials and credentials_file are None.
-    with mock.patch.object(auth, "default") as adc, mock.patch(
+    with mock.patch.object(auth, "default", autospec=True) as adc, mock.patch(
         "google.cloud.webrisk_v1.services.web_risk_service.transports.WebRiskServiceTransport._prep_wrapped_messages"
     ) as Transport:
         Transport.return_value = None
@@ -1350,9 +1349,23 @@ def test_web_risk_service_base_transport_with_adc():
         adc.assert_called_once()
 
 
+@requires_google_auth_gte_1_25_0
 def test_web_risk_service_auth_adc():
     # If no credentials are provided, we should use ADC credentials.
-    with mock.patch.object(auth, "default") as adc:
+    with mock.patch.object(auth, "default", autospec=True) as adc:
+        adc.return_value = (credentials.AnonymousCredentials(), None)
+        WebRiskServiceClient()
+        adc.assert_called_once_with(
+            scopes=None,
+            default_scopes=("https://www.googleapis.com/auth/cloud-platform",),
+            quota_project_id=None,
+        )
+
+
+@requires_google_auth_lt_1_25_0
+def test_web_risk_service_auth_adc_old_google_auth():
+    # If no credentials are provided, we should use ADC credentials.
+    with mock.patch.object(auth, "default", autospec=True) as adc:
         adc.return_value = (credentials.AnonymousCredentials(), None)
         WebRiskServiceClient()
         adc.assert_called_once_with(
@@ -1361,17 +1374,147 @@ def test_web_risk_service_auth_adc():
         )
 
 
-def test_web_risk_service_transport_auth_adc():
+@pytest.mark.parametrize(
+    "transport_class",
+    [
+        transports.WebRiskServiceGrpcTransport,
+        transports.WebRiskServiceGrpcAsyncIOTransport,
+    ],
+)
+@requires_google_auth_gte_1_25_0
+def test_web_risk_service_transport_auth_adc(transport_class):
     # If credentials and host are not provided, the transport class should use
     # ADC credentials.
-    with mock.patch.object(auth, "default") as adc:
+    with mock.patch.object(auth, "default", autospec=True) as adc:
         adc.return_value = (credentials.AnonymousCredentials(), None)
-        transports.WebRiskServiceGrpcTransport(
-            host="squid.clam.whelk", quota_project_id="octopus"
+        transport_class(quota_project_id="octopus", scopes=["1", "2"])
+        adc.assert_called_once_with(
+            scopes=["1", "2"],
+            default_scopes=("https://www.googleapis.com/auth/cloud-platform",),
+            quota_project_id="octopus",
         )
+
+
+@pytest.mark.parametrize(
+    "transport_class",
+    [
+        transports.WebRiskServiceGrpcTransport,
+        transports.WebRiskServiceGrpcAsyncIOTransport,
+    ],
+)
+@requires_google_auth_lt_1_25_0
+def test_web_risk_service_transport_auth_adc_old_google_auth(transport_class):
+    # If credentials and host are not provided, the transport class should use
+    # ADC credentials.
+    with mock.patch.object(auth, "default", autospec=True) as adc:
+        adc.return_value = (credentials.AnonymousCredentials(), None)
+        transport_class(quota_project_id="octopus")
         adc.assert_called_once_with(
             scopes=("https://www.googleapis.com/auth/cloud-platform",),
             quota_project_id="octopus",
+        )
+
+
+@pytest.mark.parametrize(
+    "transport_class,grpc_helpers",
+    [
+        (transports.WebRiskServiceGrpcTransport, grpc_helpers),
+        (transports.WebRiskServiceGrpcAsyncIOTransport, grpc_helpers_async),
+    ],
+)
+@requires_api_core_gte_1_26_0
+def test_web_risk_service_transport_create_channel(transport_class, grpc_helpers):
+    # If credentials and host are not provided, the transport class should use
+    # ADC credentials.
+    with mock.patch.object(auth, "default", autospec=True) as adc, mock.patch.object(
+        grpc_helpers, "create_channel", autospec=True
+    ) as create_channel:
+        creds = credentials.AnonymousCredentials()
+        adc.return_value = (creds, None)
+        transport_class(quota_project_id="octopus", scopes=["1", "2"])
+
+        create_channel.assert_called_with(
+            "webrisk.googleapis.com:443",
+            credentials=creds,
+            credentials_file=None,
+            quota_project_id="octopus",
+            default_scopes=("https://www.googleapis.com/auth/cloud-platform",),
+            scopes=["1", "2"],
+            default_host="webrisk.googleapis.com",
+            ssl_credentials=None,
+            options=[
+                ("grpc.max_send_message_length", -1),
+                ("grpc.max_receive_message_length", -1),
+            ],
+        )
+
+
+@pytest.mark.parametrize(
+    "transport_class,grpc_helpers",
+    [
+        (transports.WebRiskServiceGrpcTransport, grpc_helpers),
+        (transports.WebRiskServiceGrpcAsyncIOTransport, grpc_helpers_async),
+    ],
+)
+@requires_api_core_lt_1_26_0
+def test_web_risk_service_transport_create_channel_old_api_core(
+    transport_class, grpc_helpers
+):
+    # If credentials and host are not provided, the transport class should use
+    # ADC credentials.
+    with mock.patch.object(auth, "default", autospec=True) as adc, mock.patch.object(
+        grpc_helpers, "create_channel", autospec=True
+    ) as create_channel:
+        creds = credentials.AnonymousCredentials()
+        adc.return_value = (creds, None)
+        transport_class(quota_project_id="octopus")
+
+        create_channel.assert_called_with(
+            "webrisk.googleapis.com",
+            credentials=creds,
+            credentials_file=None,
+            quota_project_id="octopus",
+            scopes=("https://www.googleapis.com/auth/cloud-platform",),
+            ssl_credentials=None,
+            options=[
+                ("grpc.max_send_message_length", -1),
+                ("grpc.max_receive_message_length", -1),
+            ],
+        )
+
+
+@pytest.mark.parametrize(
+    "transport_class,grpc_helpers",
+    [
+        (transports.WebRiskServiceGrpcTransport, grpc_helpers),
+        (transports.WebRiskServiceGrpcAsyncIOTransport, grpc_helpers_async),
+    ],
+)
+@requires_api_core_lt_1_26_0
+def test_web_risk_service_transport_create_channel_user_scopes(
+    transport_class, grpc_helpers
+):
+    # If credentials and host are not provided, the transport class should use
+    # ADC credentials.
+    with mock.patch.object(auth, "default", autospec=True) as adc, mock.patch.object(
+        grpc_helpers, "create_channel", autospec=True
+    ) as create_channel:
+        creds = credentials.AnonymousCredentials()
+        adc.return_value = (creds, None)
+
+        transport_class(quota_project_id="octopus", scopes=["1", "2"])
+
+        create_channel.assert_called_with(
+            "webrisk.googleapis.com",
+            credentials=creds,
+            credentials_file=None,
+            quota_project_id="octopus",
+            scopes=["1", "2"],
+            ssl_credentials=None,
+            options=[
+                ("grpc.max_send_message_length", -1),
+                ("grpc.max_receive_message_length", -1),
+            ],
         )
 
 
@@ -1566,7 +1709,6 @@ def test_web_risk_service_transport_channel_mtls_with_adc(transport_class):
 
 def test_common_billing_account_path():
     billing_account = "squid"
-
     expected = "billingAccounts/{billing_account}".format(
         billing_account=billing_account,
     )
@@ -1587,7 +1729,6 @@ def test_parse_common_billing_account_path():
 
 def test_common_folder_path():
     folder = "whelk"
-
     expected = "folders/{folder}".format(folder=folder,)
     actual = WebRiskServiceClient.common_folder_path(folder)
     assert expected == actual
@@ -1606,7 +1747,6 @@ def test_parse_common_folder_path():
 
 def test_common_organization_path():
     organization = "oyster"
-
     expected = "organizations/{organization}".format(organization=organization,)
     actual = WebRiskServiceClient.common_organization_path(organization)
     assert expected == actual
@@ -1625,7 +1765,6 @@ def test_parse_common_organization_path():
 
 def test_common_project_path():
     project = "cuttlefish"
-
     expected = "projects/{project}".format(project=project,)
     actual = WebRiskServiceClient.common_project_path(project)
     assert expected == actual
@@ -1645,7 +1784,6 @@ def test_parse_common_project_path():
 def test_common_location_path():
     project = "winkle"
     location = "nautilus"
-
     expected = "projects/{project}/locations/{location}".format(
         project=project, location=location,
     )

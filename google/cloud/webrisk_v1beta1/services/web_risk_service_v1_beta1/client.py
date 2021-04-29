@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 # Copyright 2020 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,7 +13,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-
 from collections import OrderedDict
 from distutils import util
 import os
@@ -34,7 +32,6 @@ from google.oauth2 import service_account  # type: ignore
 
 from google.cloud.webrisk_v1beta1.types import webrisk
 from google.protobuf import timestamp_pb2 as timestamp  # type: ignore
-
 from .transports.base import WebRiskServiceV1Beta1Transport, DEFAULT_CLIENT_INFO
 from .transports.grpc import WebRiskServiceV1Beta1GrpcTransport
 from .transports.grpc_asyncio import WebRiskServiceV1Beta1GrpcAsyncIOTransport
@@ -368,7 +365,6 @@ class WebRiskServiceV1Beta1Client(metaclass=WebRiskServiceV1Beta1ClientMeta):
                 This corresponds to the ``constraints`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -395,10 +391,8 @@ class WebRiskServiceV1Beta1Client(metaclass=WebRiskServiceV1Beta1ClientMeta):
         # there are no flattened fields.
         if not isinstance(request, webrisk.ComputeThreatListDiffRequest):
             request = webrisk.ComputeThreatListDiffRequest(request)
-
             # If we have keyword arguments corresponding to fields on the
             # request, apply these.
-
             if threat_type is not None:
                 request.threat_type = threat_type
             if version_token is not None:
@@ -447,7 +441,6 @@ class WebRiskServiceV1Beta1Client(metaclass=WebRiskServiceV1Beta1ClientMeta):
                 This corresponds to the ``threat_types`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -474,10 +467,8 @@ class WebRiskServiceV1Beta1Client(metaclass=WebRiskServiceV1Beta1ClientMeta):
         # there are no flattened fields.
         if not isinstance(request, webrisk.SearchUrisRequest):
             request = webrisk.SearchUrisRequest(request)
-
             # If we have keyword arguments corresponding to fields on the
             # request, apply these.
-
             if uri is not None:
                 request.uri = uri
             if threat_types is not None:
@@ -530,7 +521,6 @@ class WebRiskServiceV1Beta1Client(metaclass=WebRiskServiceV1Beta1ClientMeta):
                 This corresponds to the ``threat_types`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -557,10 +547,8 @@ class WebRiskServiceV1Beta1Client(metaclass=WebRiskServiceV1Beta1ClientMeta):
         # there are no flattened fields.
         if not isinstance(request, webrisk.SearchHashesRequest):
             request = webrisk.SearchHashesRequest(request)
-
             # If we have keyword arguments corresponding to fields on the
             # request, apply these.
-
             if hash_prefix is not None:
                 request.hash_prefix = hash_prefix
             if threat_types is not None:
