@@ -3,9 +3,6 @@ Python Client for Web Risk API
 
 |ga| |pypi| |versions|
 
-**Note:** Cloud Web Risk is not publicly available. You must be added to the allowlist in order to gain access. See `Setting up Web Risk`_ 
-in the product documentation for a link to the sign-up form.
-
 .. _Setting up Web Risk: https://cloud.google.com/web-risk/docs/quickstart
 
 - `Client Library Documentation`_
