@@ -3,6 +3,13 @@
 [PyPI History][1]
 
 [1]: https://pypi.org/project/google-cloud-webrisk/#history
+### [1.3.1](https://www.github.com/googleapis/python-webrisk/compare/v1.3.0...v1.3.1) (2021-06-19)
+
+
+### Documentation
+
+* omit mention of Python 2.7 in 'CONTRIBUTING.rst' ([#1127](https://www.github.com/googleapis/python-webrisk/issues/1127)) ([#91](https://www.github.com/googleapis/python-webrisk/issues/91)) ([fe10bdc](https://www.github.com/googleapis/python-webrisk/commit/fe10bdc4e887621002230c175f3a93916b6d81ca)), closes [#1126](https://www.github.com/googleapis/python-webrisk/issues/1126)
+
 ## [1.3.0](https://www.github.com/googleapis/python-webrisk/compare/v1.2.0...v1.3.0) (2021-06-01)
 
 
