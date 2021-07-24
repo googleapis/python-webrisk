@@ -3,6 +3,18 @@
 [PyPI History][1]
 
 [1]: https://pypi.org/project/google-cloud-webrisk/#history
+## [1.5.0](https://www.github.com/googleapis/python-webrisk/compare/v1.4.1...v1.5.0) (2021-07-24)
+
+
+### Features
+
+* add Samples section to CONTRIBUTING.rst ([#105](https://www.github.com/googleapis/python-webrisk/issues/105)) ([6f316f5](https://www.github.com/googleapis/python-webrisk/commit/6f316f589e33f15becbb7abfbc7b875c46b1f048))
+
+
+### Bug Fixes
+
+* enable self signed jwt for grpc ([#109](https://www.github.com/googleapis/python-webrisk/issues/109)) ([797d46c](https://www.github.com/googleapis/python-webrisk/commit/797d46c74fadf3868d75a717aaf36e89cf680e29))
+
 ### [1.4.1](https://www.github.com/googleapis/python-webrisk/compare/v1.4.0...v1.4.1) (2021-07-20)
 
 
