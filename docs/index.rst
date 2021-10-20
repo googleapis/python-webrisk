@@ -19,8 +19,17 @@ API Reference
 .. toctree::
     :maxdepth: 2
 
+    web_risk_service_v1_beta1/services
+    web_risk_service_v1_beta1/types
+
+API Reference
+-------------
+.. toctree::
+    :maxdepth: 2
+
     webrisk_v1beta1/services
     webrisk_v1beta1/types
+
 
 Changelog
 ---------
@@ -28,6 +37,6 @@ Changelog
 For a list of all ``google-cloud-webrisk`` releases:
 
 .. toctree::
-   :maxdepth: 2
+    :maxdepth: 2
 
-   changelog
+    changelog
