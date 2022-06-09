@@ -22,7 +22,7 @@ import setuptools
 
 name = "google-cloud-webrisk"
 description = "Google Cloud Web Risk API client library"
-version = "0.3.2"
+version = "0.3.3"
 # Should be one of:
 # 'Development Status :: 3 - Alpha'
 # 'Development Status :: 4 - Beta'
