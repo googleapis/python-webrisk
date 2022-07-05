@@ -1735,7 +1735,6 @@ def test_web_risk_service_transport_auth_adc(transport_class):
     [
         transports.WebRiskServiceGrpcTransport,
         transports.WebRiskServiceGrpcAsyncIOTransport,
-        transports.WebRiskServiceRestTransport,
     ],
 )
 def test_web_risk_service_transport_auth_gdch_credentials(transport_class):

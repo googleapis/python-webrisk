@@ -1503,7 +1503,6 @@ def test_web_risk_service_v1_beta1_transport_auth_adc(transport_class):
     [
         transports.WebRiskServiceV1Beta1GrpcTransport,
         transports.WebRiskServiceV1Beta1GrpcAsyncIOTransport,
-        transports.WebRiskServiceV1Beta1RestTransport,
     ],
 )
 def test_web_risk_service_v1_beta1_transport_auth_gdch_credentials(transport_class):
