@@ -16,7 +16,18 @@
 from collections import OrderedDict
 import os
 import re
-from typing import Dict, Mapping, Optional, Sequence, Tuple, Type, Union, cast
+from typing import (
+    Dict,
+    Mapping,
+    MutableMapping,
+    MutableSequence,
+    Optional,
+    Sequence,
+    Tuple,
+    Type,
+    Union,
+    cast,
+)
 
 from google.api_core import client_options as client_options_lib
 from google.api_core import exceptions as core_exceptions
@@ -59,7 +70,7 @@ class WebRiskServiceV1Beta1ClientMeta(type):
 
     def get_transport_class(
         cls,
-        label: str = None,
+        label: Optional[str] = None,
     ) -> Type[WebRiskServiceV1Beta1Transport]:
         """Returns an appropriate transport class.
 
@@ -314,7 +325,7 @@ class WebRiskServiceV1Beta1Client(metaclass=WebRiskServiceV1Beta1ClientMeta):
         self,
         *,
         credentials: Optional[ga_credentials.Credentials] = None,
-        transport: Union[str, WebRiskServiceV1Beta1Transport, None] = None,
+        transport: Optional[Union[str, WebRiskServiceV1Beta1Transport]] = None,
         client_options: Optional[Union[client_options_lib.ClientOptions, dict]] = None,
         client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
     ) -> None:
@@ -412,13 +423,13 @@ class WebRiskServiceV1Beta1Client(metaclass=WebRiskServiceV1Beta1ClientMeta):
 
     def compute_threat_list_diff(
         self,
-        request: Union[webrisk.ComputeThreatListDiffRequest, dict] = None,
+        request: Optional[Union[webrisk.ComputeThreatListDiffRequest, dict]] = None,
         *,
-        threat_type: webrisk.ThreatType = None,
-        version_token: bytes = None,
-        constraints: webrisk.ComputeThreatListDiffRequest.Constraints = None,
+        threat_type: Optional[webrisk.ThreatType] = None,
+        version_token: Optional[bytes] = None,
+        constraints: Optional[webrisk.ComputeThreatListDiffRequest.Constraints] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> webrisk.ComputeThreatListDiffResponse:
         r"""Gets the most recent threat list diffs.
@@ -525,12 +536,12 @@ class WebRiskServiceV1Beta1Client(metaclass=WebRiskServiceV1Beta1ClientMeta):
 
     def search_uris(
         self,
-        request: Union[webrisk.SearchUrisRequest, dict] = None,
+        request: Optional[Union[webrisk.SearchUrisRequest, dict]] = None,
         *,
-        uri: str = None,
-        threat_types: Sequence[webrisk.ThreatType] = None,
+        uri: Optional[str] = None,
+        threat_types: Optional[MutableSequence[webrisk.ThreatType]] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> webrisk.SearchUrisResponse:
         r"""This method is used to check whether a URI is on a
@@ -554,7 +565,7 @@ class WebRiskServiceV1Beta1Client(metaclass=WebRiskServiceV1Beta1ClientMeta):
                 # Initialize request argument(s)
                 request = webrisk_v1beta1.SearchUrisRequest(
                     uri="uri_value",
-                    threat_types="UNWANTED_SOFTWARE",
+                    threat_types=['UNWANTED_SOFTWARE'],
                 )
 
                 # Make the request
@@ -574,7 +585,7 @@ class WebRiskServiceV1Beta1Client(metaclass=WebRiskServiceV1Beta1ClientMeta):
                 This corresponds to the ``uri`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-            threat_types (Sequence[google.cloud.webrisk_v1beta1.types.ThreatType]):
+            threat_types (MutableSequence[google.cloud.webrisk_v1beta1.types.ThreatType]):
                 Required. The ThreatLists to search
                 in.
 
@@ -631,12 +642,12 @@ class WebRiskServiceV1Beta1Client(metaclass=WebRiskServiceV1Beta1ClientMeta):
 
     def search_hashes(
         self,
-        request: Union[webrisk.SearchHashesRequest, dict] = None,
+        request: Optional[Union[webrisk.SearchHashesRequest, dict]] = None,
         *,
-        hash_prefix: bytes = None,
-        threat_types: Sequence[webrisk.ThreatType] = None,
+        hash_prefix: Optional[bytes] = None,
+        threat_types: Optional[MutableSequence[webrisk.ThreatType]] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> webrisk.SearchHashesResponse:
         r"""Gets the full hashes that match the requested hash
@@ -663,7 +674,7 @@ class WebRiskServiceV1Beta1Client(metaclass=WebRiskServiceV1Beta1ClientMeta):
 
                 # Initialize request argument(s)
                 request = webrisk_v1beta1.SearchHashesRequest(
-                    threat_types="UNWANTED_SOFTWARE",
+                    threat_types=['UNWANTED_SOFTWARE'],
                 )
 
                 # Make the request
@@ -685,7 +696,7 @@ class WebRiskServiceV1Beta1Client(metaclass=WebRiskServiceV1Beta1ClientMeta):
                 This corresponds to the ``hash_prefix`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-            threat_types (Sequence[google.cloud.webrisk_v1beta1.types.ThreatType]):
+            threat_types (MutableSequence[google.cloud.webrisk_v1beta1.types.ThreatType]):
                 Required. The ThreatLists to search
                 in.
 
