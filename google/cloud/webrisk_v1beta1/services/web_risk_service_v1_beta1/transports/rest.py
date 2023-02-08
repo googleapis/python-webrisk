@@ -14,24 +14,21 @@
 # limitations under the License.
 #
 
-from google.auth.transport.requests import AuthorizedSession  # type: ignore
-import json  # type: ignore
-import grpc  # type: ignore
-from google.auth.transport.grpc import SslCredentials  # type: ignore
-from google.auth import credentials as ga_credentials  # type: ignore
-from google.api_core import exceptions as core_exceptions
-from google.api_core import retry as retries
-from google.api_core import rest_helpers
-from google.api_core import rest_streaming
-from google.api_core import path_template
-from google.api_core import gapic_v1
-
-from google.protobuf import json_format
-from requests import __version__ as requests_version
 import dataclasses
+import json  # type: ignore
 import re
 from typing import Callable, Dict, List, Optional, Sequence, Tuple, Union
 import warnings
+
+from google.api_core import gapic_v1, path_template, rest_helpers, rest_streaming
+from google.api_core import exceptions as core_exceptions
+from google.api_core import retry as retries
+from google.auth import credentials as ga_credentials  # type: ignore
+from google.auth.transport.grpc import SslCredentials  # type: ignore
+from google.auth.transport.requests import AuthorizedSession  # type: ignore
+from google.protobuf import json_format
+import grpc  # type: ignore
+from requests import __version__ as requests_version
 
 try:
     OptionalRetry = Union[retries.Retry, gapic_v1.method._MethodDefault]
@@ -41,8 +38,8 @@ except AttributeError:  # pragma: NO COVER
 
 from google.cloud.webrisk_v1beta1.types import webrisk
 
-from .base import WebRiskServiceV1Beta1Transport, DEFAULT_CLIENT_INFO as BASE_DEFAULT_CLIENT_INFO
-
+from .base import DEFAULT_CLIENT_INFO as BASE_DEFAULT_CLIENT_INFO
+from .base import WebRiskServiceV1Beta1Transport
 
 DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo(
     gapic_version=BASE_DEFAULT_CLIENT_INFO.gapic_version,
@@ -95,7 +92,12 @@ class WebRiskServiceV1Beta1RestInterceptor:
 
 
     """
-    def pre_compute_threat_list_diff(self, request: webrisk.ComputeThreatListDiffRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[webrisk.ComputeThreatListDiffRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_compute_threat_list_diff(
+        self,
+        request: webrisk.ComputeThreatListDiffRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[webrisk.ComputeThreatListDiffRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for compute_threat_list_diff
 
         Override in a subclass to manipulate the request or metadata
@@ -103,7 +105,9 @@ class WebRiskServiceV1Beta1RestInterceptor:
         """
         return request, metadata
 
-    def post_compute_threat_list_diff(self, response: webrisk.ComputeThreatListDiffResponse) -> webrisk.ComputeThreatListDiffResponse:
+    def post_compute_threat_list_diff(
+        self, response: webrisk.ComputeThreatListDiffResponse
+    ) -> webrisk.ComputeThreatListDiffResponse:
         """Post-rpc interceptor for compute_threat_list_diff
 
         Override in a subclass to manipulate the response
@@ -111,7 +115,10 @@ class WebRiskServiceV1Beta1RestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_search_hashes(self, request: webrisk.SearchHashesRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[webrisk.SearchHashesRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_search_hashes(
+        self, request: webrisk.SearchHashesRequest, metadata: Sequence[Tuple[str, str]]
+    ) -> Tuple[webrisk.SearchHashesRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for search_hashes
 
         Override in a subclass to manipulate the request or metadata
@@ -119,7 +126,9 @@ class WebRiskServiceV1Beta1RestInterceptor:
         """
         return request, metadata
 
-    def post_search_hashes(self, response: webrisk.SearchHashesResponse) -> webrisk.SearchHashesResponse:
+    def post_search_hashes(
+        self, response: webrisk.SearchHashesResponse
+    ) -> webrisk.SearchHashesResponse:
         """Post-rpc interceptor for search_hashes
 
         Override in a subclass to manipulate the response
@@ -127,7 +136,10 @@ class WebRiskServiceV1Beta1RestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_search_uris(self, request: webrisk.SearchUrisRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[webrisk.SearchUrisRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_search_uris(
+        self, request: webrisk.SearchUrisRequest, metadata: Sequence[Tuple[str, str]]
+    ) -> Tuple[webrisk.SearchUrisRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for search_uris
 
         Override in a subclass to manipulate the request or metadata
@@ -135,7 +147,9 @@ class WebRiskServiceV1Beta1RestInterceptor:
         """
         return request, metadata
 
-    def post_search_uris(self, response: webrisk.SearchUrisResponse) -> webrisk.SearchUrisResponse:
+    def post_search_uris(
+        self, response: webrisk.SearchUrisResponse
+    ) -> webrisk.SearchUrisResponse:
         """Post-rpc interceptor for search_uris
 
         Override in a subclass to manipulate the response
@@ -166,20 +180,21 @@ class WebRiskServiceV1Beta1RestTransport(WebRiskServiceV1Beta1Transport):
 
     """
 
-    def __init__(self, *,
-            host: str = 'webrisk.googleapis.com',
-            credentials: Optional[ga_credentials.Credentials] = None,
-            credentials_file: Optional[str] = None,
-            scopes: Optional[Sequence[str]] = None,
-            client_cert_source_for_mtls: Optional[Callable[[
-                ], Tuple[bytes, bytes]]] = None,
-            quota_project_id: Optional[str] = None,
-            client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
-            always_use_jwt_access: Optional[bool] = False,
-            url_scheme: str = 'https',
-            interceptor: Optional[WebRiskServiceV1Beta1RestInterceptor] = None,
-            api_audience: Optional[str] = None,
-            ) -> None:
+    def __init__(
+        self,
+        *,
+        host: str = "webrisk.googleapis.com",
+        credentials: Optional[ga_credentials.Credentials] = None,
+        credentials_file: Optional[str] = None,
+        scopes: Optional[Sequence[str]] = None,
+        client_cert_source_for_mtls: Optional[Callable[[], Tuple[bytes, bytes]]] = None,
+        quota_project_id: Optional[str] = None,
+        client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
+        always_use_jwt_access: Optional[bool] = False,
+        url_scheme: str = "https",
+        interceptor: Optional[WebRiskServiceV1Beta1RestInterceptor] = None,
+        api_audience: Optional[str] = None,
+    ) -> None:
         """Instantiate the transport.
 
         Args:
@@ -218,7 +233,9 @@ class WebRiskServiceV1Beta1RestTransport(WebRiskServiceV1Beta1Transport):
         # credentials object
         maybe_url_match = re.match("^(?P<scheme>http(?:s)?://)?(?P<host>.*)$", host)
         if maybe_url_match is None:
-            raise ValueError(f"Unexpected hostname structure: {host}")  # pragma: NO COVER
+            raise ValueError(
+                f"Unexpected hostname structure: {host}"
+            )  # pragma: NO COVER
 
         url_match_items = maybe_url_match.groupdict()
 
@@ -229,10 +246,11 @@ class WebRiskServiceV1Beta1RestTransport(WebRiskServiceV1Beta1Transport):
             credentials=credentials,
             client_info=client_info,
             always_use_jwt_access=always_use_jwt_access,
-            api_audience=api_audience
+            api_audience=api_audience,
         )
         self._session = AuthorizedSession(
-            self._credentials, default_host=self.DEFAULT_HOST)
+            self._credentials, default_host=self.DEFAULT_HOST
+        )
         if client_cert_source_for_mtls:
             self._session.configure_mtls_channel(client_cert_source_for_mtls)
         self._interceptor = interceptor or WebRiskServiceV1Beta1RestInterceptor()
@@ -242,19 +260,27 @@ class WebRiskServiceV1Beta1RestTransport(WebRiskServiceV1Beta1Transport):
         def __hash__(self):
             return hash("ComputeThreatListDiff")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-            "threatType" : {},            "constraints" : {},        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {
+            "threatType": {},
+            "constraints": {},
+        }
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: webrisk.ComputeThreatListDiffRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> webrisk.ComputeThreatListDiffResponse:
+        def __call__(
+            self,
+            request: webrisk.ComputeThreatListDiffRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> webrisk.ComputeThreatListDiffResponse:
             r"""Call the compute threat list diff method over HTTP.
 
             Args:
@@ -271,37 +297,42 @@ class WebRiskServiceV1Beta1RestTransport(WebRiskServiceV1Beta1Transport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'get',
-                'uri': '/v1beta1/threatLists:computeDiff',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "get",
+                    "uri": "/v1beta1/threatLists:computeDiff",
+                },
             ]
-            request, metadata = self._interceptor.pre_compute_threat_list_diff(request, metadata)
+            request, metadata = self._interceptor.pre_compute_threat_list_diff(
+                request, metadata
+            )
             pb_request = webrisk.ComputeThreatListDiffRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -320,19 +351,26 @@ class WebRiskServiceV1Beta1RestTransport(WebRiskServiceV1Beta1Transport):
         def __hash__(self):
             return hash("SearchHashes")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-            "threatTypes" : {},        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {
+            "threatTypes": {},
+        }
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: webrisk.SearchHashesRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> webrisk.SearchHashesResponse:
+        def __call__(
+            self,
+            request: webrisk.SearchHashesRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> webrisk.SearchHashesResponse:
             r"""Call the search hashes method over HTTP.
 
             Args:
@@ -351,37 +389,40 @@ class WebRiskServiceV1Beta1RestTransport(WebRiskServiceV1Beta1Transport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'get',
-                'uri': '/v1beta1/hashes:search',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "get",
+                    "uri": "/v1beta1/hashes:search",
+                },
             ]
             request, metadata = self._interceptor.pre_search_hashes(request, metadata)
             pb_request = webrisk.SearchHashesRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -400,19 +441,27 @@ class WebRiskServiceV1Beta1RestTransport(WebRiskServiceV1Beta1Transport):
         def __hash__(self):
             return hash("SearchUris")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-            "uri" : "",            "threatTypes" : {},        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {
+            "uri": "",
+            "threatTypes": {},
+        }
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: webrisk.SearchUrisRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> webrisk.SearchUrisResponse:
+        def __call__(
+            self,
+            request: webrisk.SearchUrisRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> webrisk.SearchUrisResponse:
             r"""Call the search uris method over HTTP.
 
             Args:
@@ -431,37 +480,40 @@ class WebRiskServiceV1Beta1RestTransport(WebRiskServiceV1Beta1Transport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'get',
-                'uri': '/v1beta1/uris:search',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "get",
+                    "uri": "/v1beta1/uris:search",
+                },
             ]
             request, metadata = self._interceptor.pre_search_uris(request, metadata)
             pb_request = webrisk.SearchUrisRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -477,28 +529,30 @@ class WebRiskServiceV1Beta1RestTransport(WebRiskServiceV1Beta1Transport):
             return resp
 
     @property
-    def compute_threat_list_diff(self) -> Callable[
-            [webrisk.ComputeThreatListDiffRequest],
-            webrisk.ComputeThreatListDiffResponse]:
+    def compute_threat_list_diff(
+        self,
+    ) -> Callable[
+        [webrisk.ComputeThreatListDiffRequest], webrisk.ComputeThreatListDiffResponse
+    ]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._ComputeThreatListDiff(self._session, self._host, self._interceptor) # type: ignore
+        return self._ComputeThreatListDiff(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def search_hashes(self) -> Callable[
-            [webrisk.SearchHashesRequest],
-            webrisk.SearchHashesResponse]:
+    def search_hashes(
+        self,
+    ) -> Callable[[webrisk.SearchHashesRequest], webrisk.SearchHashesResponse]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._SearchHashes(self._session, self._host, self._interceptor) # type: ignore
+        return self._SearchHashes(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def search_uris(self) -> Callable[
-            [webrisk.SearchUrisRequest],
-            webrisk.SearchUrisResponse]:
+    def search_uris(
+        self,
+    ) -> Callable[[webrisk.SearchUrisRequest], webrisk.SearchUrisResponse]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._SearchUris(self._session, self._host, self._interceptor) # type: ignore
+        return self._SearchUris(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
     def kind(self) -> str:
@@ -508,6 +562,4 @@ class WebRiskServiceV1Beta1RestTransport(WebRiskServiceV1Beta1Transport):
         self._session.close()
 
 
-__all__=(
-    'WebRiskServiceV1Beta1RestTransport',
-)
+__all__ = ("WebRiskServiceV1Beta1RestTransport",)
